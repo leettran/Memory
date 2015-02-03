@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Testbatterie-Aufgabe: Memory</title>
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.0b1.min.css"/>       
+        <link rel="stylesheet" href="css/style.css" media="screen and (orientation: landscape)" type="text/css">  
+
+
+        <script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.0rc2.min.js"></script>
+        <script type="text/javascript" src="js/jstorage.js"></script>
+        <script type="text/javascript" src="js/memoryScript.js"></script>
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    </head>
+
+
+    <body>
+
+        <!--startpage for neurocare testbatterie with task: memory-->
+        <div data-role="page" id="memoryStart" data-dom-cache=true class="startPage" >
+
+
+            <div data-role="content">
+
+                <div class="testname">Aufgabe<br>Memory</div>
+
+
+
+            </div>
+
+            <!--script used to show start page for few seconds and the to switch to intro page-->
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryStart', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryIntro', {transition: "flip"});
+                        }, 4000);
+
+                    }
+
+
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div> 
+
+
+
+        <!--intro page for neurocare testbatterie containing a small introduction to the task alertness-->
+        <div data-role="page" id="memoryIntro" data-dom-cache=true class="introPage" >
+
+            <div data-role="content">
+
+                <image src="css\images\icons\info.png" class="infoIcon"/>
+
+                <center>
+                    <p class="introText">
+
+                        Gleich sehen Sie ein Spielfeld mit 9 verdeckten Karten. Auf der Rückseite einiger Karten sind Bilder versteckt. 
+                        Diese Bilder werden Ihnen nacheinander für einen kurzen Moment gezeigt. 
+                        Ihre Aufgabe ist es, sich die Bilder sowie ihre Position auf dem Spielfeld so gut wie möglich einzuprägen.
+                        Im Anschluss sollen Sie die Bilder aus einer Auswahl von Bildern wiedererkennen und mit dem Finger auswählen. 
+                        Danach sollen Sie die Bilder wieder ihrer ursprünglichen Position auf dem Spielfeld zuordnen. 
+                        Wenn Sie sich nicht mehr erinnern, raten Sie bitte.
+                        Es gibt mehrere Durchgänge, die Anzahl der Bilder, die Sie sich merken sollen, steigt im Laufe des Spiels an.
+
+                    </p>
+                </center>
+
+
+                <!--only for tests! later uncomment the first line!-->
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="showHintPage('memoryDemo1');"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--demo example-->
+
+        <!--hint page to show some hints-->
+        <div data-role="page" id="hintPage" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <center>
+                    <h1 class="hintTextBig">Merken Sie sich das Bild und seine Position auf dem Feld</h1>
+
+                </center>
+
+
+            </div>
+
+
+        </div> 
+
+
+        <!--first demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo1" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <!--<h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>-->
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo1', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryDemo2', {transition: "none"});
+                        }, 2000);
+                    }
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--2. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo2" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>  </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo2', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryDemo3', {transition: "none"});
+                        }, 3000);
+                    }
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--3. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo3" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <!--<h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>-->
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo3', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryDemo4', {transition: "none"});
+                        }, 1000);
+                    }
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--4. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo4" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+                <table class="fieldsTableChoice">
+
+                    <tr> 
+
+                        <td > <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>  </td>
+                        <td > <image style="vertical-align:bottom;" src="css\images\pics\demopic2.png"/>  </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup1" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\hand.png" id="demoHand1" style="position: absolute;bottom: 40%;left: 5%;z-index: 1000;"/>
+
+                <image src="css\images\btns-bg\bt-weiter.png" id="demoWeiterBtn1" class="defaultButton" />
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo4', 'pageshow', function () {
+
+                    function simulateClick() {
+
+                        $("#demoWeiterBtn1").attr("class", "defaultButtonClicked");
+                        setTimeout(function () {
+
+                            // set class back
+                            $("#demoWeiterBtn1").attr("class", "defaultButton");
+                            // show choice hint
+                            $("#hintPopup1").css("visibility", "visible");
+
+                            setTimeout(function () {
+                                // hide choice hint
+                                $("#hintPopup1").css("visibility", "hidden");
+                                // next page
+                                $.mobile.changePage('#memoryDemo5', {transition: "none"});
+                                // animate hand cursor back 
+//                                $("#demoHand1").animate({
+//                                    left: '5' + '%',
+//                                    bottom: '40' + '%'
+//                                }, 1000);
+
+                            }, 1000);
+
+
+                        }, 500);
+
+                    }
+
+
+
+                    // slide hand cursor to button
+                    setTimeout(function () {
+                        $("#demoHand1").animate({
+                            left: '85' + '%',
+                            bottom: '0.5' + '%'
+
+                        }, 2000, function () {
+                            // Animation completed
+
+                            simulateClick();
+
+                        });
+                    }, 1000);
+
+                });
+            </script>
+
+
+        </div>
+
+
+
+        <!--5. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo5" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+                <table class="fieldsTableChoice">
+
+                    <tr> 
+
+                        <td  id="demoPic1"> <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>  </td>
+                        <td > <image style="vertical-align:bottom;" src="css\images\pics\demopic2.png"/>  </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2" style="visibility: hidden;"> Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie 'Weiter'  </h1>
+
+
+                <image src="css\images\hand.png" id="demoHand2" style="position: absolute;bottom: 0.5%;left: 85%;z-index: 1000;"/>
+
+                <image src="css\images\btns-bg\bt-weiter.png"  class="defaultButton" />
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo5', 'pageshow', function () {
+
+                    function simulateClick() {
+
+                        // select pic
+                        $("#demoPic1").attr("class", "selectedPic");
+
+                        setTimeout(function () {
+
+
+                            // show choice hint
+                            $("#hintPopup2").css("visibility", "visible");
+
+                            setTimeout(function () {
+                                // hide choice hint
+                                $("#hintPopup2").css("visibility", "hidden");
+                                // next page
+                                $.mobile.changePage('#memoryDemo6', {transition: "none"});
+                                // animate hand cursor back 
+                                $("#demoHand2").animate({
+                                    left: '5' + '%',
+                                    bottom: '40' + '%'
+                                }, 1000);
+
+                            }, 1000);
+
+
+                        }, 500);
+
+                    }
+
+
+
+                    // slide hand cursor to button
+                    setTimeout(function () {
+                        $("#demoHand2").animate({
+                            left: '40' + '%',
+                            bottom: '30' + '%'
+
+                        }, 2000, function () {
+                            // Animation completed
+
+                            simulateClick();
+
+                        });
+                    }, 1000);
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--6. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo6" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+                <table class="fieldsTableChoice">
+
+                    <tr> 
+
+                        <td class="selectedPic" id="demoPic2"> <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>  </td>
+                        <td > <image style="vertical-align:bottom;" src="css\images\pics\demopic2.png"/>  </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup3" style="visibility: hidden;"> Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie "Weiter"  </h1>
+
+
+                <image src="css\images\hand.png" id="demoHand3" style="position: absolute;bottom: 40%;left: 5%;z-index: 1000;"/>
+
+                <image src="css\images\btns-bg\bt-weiter.png"  class="defaultButton" />
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo6', 'pageshow', function () {
+
+                    function simulateClick() {
+
+                        // select pic
+                        $("#demoPic2").attr("class", "");
+
+                        setTimeout(function () {
+
+
+                            // show choice hint
+//                            $("#hintPopup3").css("visibility", "visible");
+
+                            setTimeout(function () {
+                                // hide choice hint
+//                                $("#hintPopup3").css("visibility", "hidden");
+                                // next page
+                                $.mobile.changePage('#memoryDemo7', {transition: "none"});
+                                // animate hand cursor back 
+                                $("#demoHand3").animate({
+                                    left: '5' + '%',
+                                    bottom: '40' + '%'
+                                }, 1000);
+
+                            }, 1000);
+
+
+                        }, 500);
+
+                    }
+
+
+
+                    // slide hand cursor to button
+                    setTimeout(function () {
+                        $("#demoHand3").animate({
+                            left: '40' + '%',
+                            bottom: '30' + '%'
+
+                        }, 2000, function () {
+                            // Animation completed
+
+                            simulateClick();
+
+                        });
+                    }, 1000);
+
+                });
+            </script>
+
+
+        </div>
+
+
+
+        <!--7. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo7" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+                <table class="fieldsTableChoice">
+
+                    <tr> 
+
+                        <td  > <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>  </td>
+                        <td  id="demoPic3"> <image style="vertical-align:bottom;" src="css\images\pics\demopic2.png"/>  </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup4" style="visibility: hidden;"> Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie "Weiter"  </h1>
+
+
+                <image src="css\images\hand.png" id="demoHand4" style="position: absolute;bottom: 40%;left: 5%;z-index: 1000;"/>
+
+                <image src="css\images\btns-bg\bt-weiter.png"  class="defaultButton" />
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo7', 'pageshow', function () {
+
+                    function simulateClick() {
+
+                        // select pic
+                        $("#demoPic3").attr("class", "selectedPic");
+
+                        setTimeout(function () {
+
+
+                            // show choice hint
+                            $("#hintPopup4").css("visibility", "visible");
+
+                            setTimeout(function () {
+                                // hide choice hint
+                                $("#hintPopup4").css("visibility", "hidden");
+                                // next page
+                                $.mobile.changePage('#memoryDemo8', {transition: "none"});
+                                // animate hand cursor back 
+//                                $("#demoHand4").animate({
+//                                    left: '5' + '%',
+//                                    bottom: '40' + '%'
+//                                }, 1000);
+
+                            }, 1000);
+
+
+                        }, 500);
+
+                    }
+
+
+
+                    // slide hand cursor to button
+                    setTimeout(function () {
+                        $("#demoHand4").animate({
+                            left: '50' + '%',
+                            bottom: '30' + '%'
+
+                        }, 2000, function () {
+                            // Animation completed
+
+                            simulateClick();
+
+                        });
+                    }, 1000);
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--8. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo8" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+                <table class="fieldsTableChoice">
+
+                    <tr> 
+
+                        <td  > <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>  </td>
+                        <td class="selectedPic" > <image style="vertical-align:bottom;" src="css\images\pics\demopic2.png"/>  </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup5" style="visibility: hidden;"> Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie "Weiter"  </h1>
+
+
+                <image src="css\images\hand.png" id="demoHand5" style="position: absolute;bottom: 30%;left: 50%;z-index: 1000;"/>
+
+                <image src="css\images\btns-bg\bt-weiter.png" id="demoWeiterBtn2"  class="defaultButton" />
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo8', 'pageshow', function () {
+
+                    function simulateClick() {
+
+                        // click weiter btn
+                        $("#demoWeiterBtn2").attr("class", "defaultButtonClicked");
+
+                        setTimeout(function () {
+
+                            // reset weiter btn
+                            $("#demoWeiterBtn2").attr("class", "defaultButton");
+                            // show choice hint
+//                            $("#hintPopup5").css("visibility", "visible");
+
+                            setTimeout(function () {
+                                // hide choice hint
+//                                $("#hintPopup5").css("visibility", "hidden");
+                                // next page
+                                $.mobile.changePage('#memoryDemo9', {transition: "none"});
+                                // animate hand cursor back 
+                                $("#demoHand5").animate({
+                                    left: '70' + '%',
+                                    bottom: '0.5' + '%'
+                                }, 1000);
+
+                            }, 1000);
+
+
+                        }, 500);
+
+                    }
+
+
+
+                    // slide hand cursor to button
+                    setTimeout(function () {
+                        $("#demoHand5").animate({
+                            left: '85' + '%',
+                            bottom: '0.5' + '%'
+
+                        }, 1000, function () {
+                            // Animation completed
+
+                            simulateClick();
+
+                        });
+                    }, 1000);
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--9. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo9" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+
+
+                <table class="fieldsTableChoice" id="choiceTable1">
+
+                    <tr> 
+
+                        <td id="demoPic4"> 
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;"  src="css\images\pics\demopic1.png"/>  
+                            </div>
+
+                            <div id="demoOverlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>  
+                            </div>
+                        </td>
+
+                        <td class="selectedPic" id="demoPic5"> 
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\demopic2.png"/> 
+                            </div>
+                            <div id="demoOverlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+                        </td> 
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo9', 'pageshow', function () {
+
+                    // lets only right pics and removes all others
+                    function removeDistractorPics() {
+                        // hide overlays
+                        $("#demoOverlay1").css("visibility", "hidden");
+                        $("#demoOverlay2").css("visibility", "hidden");
+                        // remove distractor pics
+                        $("#demoPic5").css("visibility", "hidden");
+
+                    }
+
+
+                    $("#demoPic5").css("visibility", "visible");
+
+                    setTimeout(function () {
+                        // show overlays
+                        $("#demoOverlay1").css("visibility", "visible");
+                        $("#demoOverlay2").css("visibility", "visible");
+                        // remove all distractors
+                        setTimeout(function () {
+                            removeDistractorPics();
+
+                            setTimeout(function () {
+                                // next page
+                                $.mobile.changePage('#memoryDemo10', {transition: "flip"});
+                            }, 5000);
+
+                        }, 4000);
+
+                    }, 2000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+
+        <!--10. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo10" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="positionHint1" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
+
+                    <tr> 
+
+                        <td id="demoPic6"> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\demopic1.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo10', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#positionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#memoryDemo11', {transition: "none"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+
+        <!--11. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryDemo11" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="targetFieldDemo"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+                <div class="fieldBorder" id="choicePic1" style="position: absolute; top: 40%; left: 5%; vertical-align:bottom;">  
+                    <image style="vertical-align:bottom;" src="css\images\pics\demopic1.png"/>
+                </div>
+
+                <image src="css\images\hand.png" id="demoHand6" style="position: absolute;top: 60%;left: 30%;z-index: 1000;"/>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton"/>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryDemo11', 'pageshow', function () {
+
+
+                    var eTop;
+                    var eLeft;
+
+                    function selectTargetField() {
+
+                        $("#choicePic1").attr("class", "selectedPic");
+
+                        setTimeout(function () {
+
+                            // animate hand cursor to fields table 
+                            $("#demoHand6").animate({
+                                left: '56' + '%',
+                                top: '20' + '%'
+                            }, 2000, function () {
+                                // select target field
+                                $("#targetFieldDemo").attr("class", "selectedPic");
+                                // remove selection from pic
+                                $("#choicePic1").attr("class", "");
+
+                                // get pos of target field
+                                eTop = $('#targetFieldDemo').offset().top + 2;
+                                eLeft = $('#targetFieldDemo').offset().left + 2;
+
+                                setTimeout(function () {
+                                    // move pic
+                                    $("#choicePic1").animate({
+                                        left: eLeft + 'px',
+                                        top: eTop + 'px'
+                                    }, 2000, function () {
+                                        // remove selection from target field
+                                        $("#targetFieldDemo").attr("class", "fieldBorder");
+
+                                        // slide hand away
+                                        $("#demoHand6").animate({
+                                            left: '10' + '%',
+                                            top: '42' + '%'
+
+                                        }, 1500, function () {
+                                            // Animation completed
+                                            $.mobile.changePage('#bridgingPage1', {transition: "none"});
+
+
+                                        });
+
+                                    });
+
+                                }, 1000);
+
+                            });
+
+
+                        }, 1000);
+
+
+
+                    }
+
+
+
+                    // slide hand cursor to pic
+                    setTimeout(function () {
+                        $("#demoHand6").animate({
+                            left: '6' + '%',
+                            top: '42' + '%'
+
+                        }, 1500, function () {
+                            // Animation completed
+
+                            selectTargetField();
+
+                        });
+                    }, 1000);
+                });
+
+            </script>
+
+
+        </div> 
+
+
+
+        <!--bridging page1 -->
+        <div data-role="page" id="bridgingPage1" data-dom-cache=true class="introPage">
+
+            <div data-role="content">
+
+                <image src="css\images\icons\tipp.png" class="infoIcon"/>
+
+                <center>
+                    <p class="introTextTop">
+                        Machen Sie zunächst einen Probedurchgang
+                    </p>
+
+                    <image src="css\images\btns-bg\bt-weiter.png" class="defaultButtonTop" onclick="showHintPage('memoryTrial1');"/>
+
+                    <p class="introTextMiddle">
+                        Möchten Sie das Beispiel noch einmal ansehen?
+                    </p>
+
+                    <image src="css\images\btns-bg\bt-weiter.png" class="defaultButtonMiddle" onclick="showHintPage('memoryDemo1');"/>
+                </center>
+
+
+            </div>
+
+
+        </div> 
+
+
+
+        <!--trial example-->
+
+
+        <!--first trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial1" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <!--<h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>-->
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryTrial1', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryTrial2', {transition: "none"});
+                        }, 2000);
+                    }
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--2. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial2" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> <image style="vertical-align:bottom;" src="css\images\pics\trialpic1.png"/> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryTrial2', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryTrial3', {transition: "none"});
+                        }, 3000);
+                    }
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--3. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial3" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryTrial3', 'pageshow', function () {
+
+                    function showJustForWhile() {
+                        setTimeout(function () {
+                            $.mobile.changePage('#memoryTrial4', {transition: "none"});
+                        }, 1000);
+                    }
+
+
+                    showJustForWhile();
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--4. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial4" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+                <table class="fieldsTableChoice" id="trialFieldsChoiceTable1">
+
+                    <tr> 
+
+                        <td id="trialPicTd1" onclick="selectPicPart1Trial(this, document.getElementById('trialFieldsChoiceTable1'));"> <image style="vertical-align:bottom;" src="css\images\pics\trialpic2.png"/>  </td>
+                        <td id="trialPicTd2" onclick="selectPicPart1Trial(this, document.getElementById('trialFieldsChoiceTable1'));"> <image style="vertical-align:bottom;" src="css\images\pics\trialpic1.png"/>  </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTrial1" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTrial();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--5. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial5" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+
+
+                <table class="fieldsTableChoice">
+
+                    <tr> 
+
+                        <td id="trialPic4"> 
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;"  src="css\images\pics\trialpic2.png"/>  
+                            </div>
+
+                            <div id="trialOverlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+                        </td>
+
+                        <td id="trialPic5"> 
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\trialpic1.png"/> 
+                            </div>
+                            <div id="trialOverlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+                        </td> 
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryTrial5', 'pageshow', function () {
+
+                    // set selected pic according to registred selection
+                    if (selectedPicIdPart1Trial !== null) {
+                        if (selectedPicIdPart1Trial === "trialPicTd1")
+                            $("#trialPic4").attr("class", "selectedPic");
+                        else
+                            $("#trialPic5").attr("class", "selectedPic");
+
+                    }
+
+                    setTimeout(function () {
+
+                        // show overlays
+                        $("#trialOverlay1").css("visibility", "visible");
+                        $("#trialOverlay2").css("visibility", "visible");
+                        // remove all distractors
+                        setTimeout(function () {
+                            removeDistractorPics();
+
+                            setTimeout(function () {
+                                // next page
+                                $.mobile.changePage('#memoryTrial6', {transition: "flip"});
+                            }, 5000);
+
+                        }, 4000);
+
+                    }, 2000);
+
+
+                    // lets only right pics and removes all others
+                    function removeDistractorPics() {
+                        // hide overlays
+                        $("#trialOverlay1").css("visibility", "hidden");
+                        $("#trialOverlay2").css("visibility", "hidden");
+                        // remove distractor pics
+                        $("#trialPic4").css("visibility", "hidden");
+
+                    }
+
+
+                });
+
+            </script>
+
+
+        </div>
+
+
+
+        <!--6. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial6" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="trialPositionHint1" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
+
+                    <tr> 
+
+                        <td id="trialPic6"> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\trialpic1.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#memoryTrial6', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#trialPositionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#memoryTrial7', {transition: "none"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--7. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
+        <div data-role="page" id="memoryTrial7" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="trialTargetField1" onclick="selectTargetFieldTrial(this);"> </td>
+                        <td class="fieldBorder" id="trialTargetField2" onclick="selectTargetFieldTrial(this);"> </td> 
+                        <td class="fieldBorder" id="trialTargetField3" onclick="selectTargetFieldTrial(this);"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="trialTargetField4" onclick="selectTargetFieldTrial(this);"> </td>
+                        <td class="fieldBorder" id="trialTargetField5" onclick="selectTargetFieldTrial(this);"> </td> 
+                        <td class="fieldBorder" id="trialTargetField6" onclick="selectTargetFieldTrial(this);"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="trialTargetField7" onclick="selectTargetFieldTrial(this);"> </td>
+                        <td class="fieldBorder" id="trialTargetField8" onclick="selectTargetFieldTrial(this);"> </td> 
+                        <td class="fieldBorder" id="trialTargetField9" onclick="selectTargetFieldTrial(this);"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+                <div class="fieldBorder" id="trialChoicePic1" style="position: absolute; top: 40%; left: 5%; vertical-align:bottom;" onclick="selectPicPart2Trial(this);">  
+                    <image style="vertical-align:bottom;" src="css\images\pics\trialpic1.png"/>
+                </div>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTrial2" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="showBridgingPage();"/>
+
+
+            </div>
+
+
+
+        </div> 
+
+
+        <!--bridging page2 -->
+        <div data-role="page" id="bridgingPage2" data-dom-cache=true class="introPage">
+
+            <div data-role="content">
+
+                <image src="css\images\icons\tipp.png" class="infoIcon"/>
+
+                <center>
+                    <p class="introTextTop">
+                        Möchten Sie nun mit der Aufgabe beginnen?
+                    </p>
+
+                    <image src="css\images\btns-bg\bt-weiter.png" class="defaultButtonTop" onclick="showEmptyTable('tableWithPicsTask1');"/>
+
+                    <p class="introTextMiddle">
+                        Möchten Sie das Beispiel noch einmal ansehen?
+                    </p>
+
+                    <image src="css\images\btns-bg\bt-weiter.png" class="defaultButtonMiddle" onclick="showHintPage('memoryDemo1');"/>
+                </center>
+
+
+            </div>
+
+
+        </div> 
+
+
+        <!--begin of the task1-->
+
+        <!--empty table as a bridging page to following task-->
+        <div data-role="page" id="emptyTablePage" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <!--<h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>-->
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div> 
+
+
+        <!--page presenting position of pic task1-->
+        <div data-role="page" id="tableWithPicsTask1" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> <image style="vertical-align:bottom;" src="css\images\pics\task1pic1.png"/> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask1', 'pageshow', function () {
+
+                    setTimeout(function () {
+                        showEmptyTable('choicePart1Task1');
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task1" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task1">
+
+                    <tr> 
+
+                        <td id="pic1Td1Taks1" data-accurate="right" onclick="selectPicPart1Task1(this, document.getElementById('fieldsChoiceTable1Task1'), 1);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task1pic1.png"/> 
+                            </div>
+
+                            <div id="task1Overlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Taks1" data-accurate="wrong" onclick="selectPicPart1Task1(this, document.getElementById('fieldsChoiceTable1Task1'), 1);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task1pic2.png"/> 
+                            </div>
+
+                            <div id="task1Overlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask1" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTaks1();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask1" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task1PositionHint1" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task1pic1.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask1', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task1PositionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task1', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task1" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task1TargetField1" onclick="selectTargetFieldTask1(this);"> </td>
+                        <td class="fieldBorder" id="task1TargetField2" onclick="selectTargetFieldTask1(this);"> </td> 
+                        <td class="fieldBorder" id="task1TargetField3" onclick="selectTargetFieldTask1(this);"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task1TargetField4" onclick="selectTargetFieldTask1(this);"> </td>
+                        <td class="fieldBorder" id="task1TargetField5" onclick="selectTargetFieldTask1(this);"> </td> 
+                        <td class="fieldBorder" id="task1TargetField6" onclick="selectTargetFieldTask1(this);"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task1TargetField7" onclick="selectTargetFieldTask1(this);"> </td>
+                        <td class="fieldBorder" id="task1TargetField8" onclick="selectTargetFieldTask1(this);"> </td> 
+                        <td class="fieldBorder" id="task1TargetField9" onclick="selectTargetFieldTask1(this);"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+                <div class="fieldBorder" id="task1ChoicePic1" style="position: absolute; top: 40%; left: 5%; vertical-align:bottom;" onclick="selectPicPart2Task1(this);">  
+                    <image style="vertical-align:bottom;" src="css\images\pics\task1pic1.png"/>
+                </div>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task1" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask1();"/>
+
+
+            </div>
+
+
+
+        </div> 
+
+
+        <!--task 1 rep-->
+
+        <!--page presenting position of pic task1 rep-->
+        <div data-role="page" id="tableWithPicsTask1Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> <image style="vertical-align:bottom;" src="css\images\pics\task1pic1rep.png"/> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask1Rep', 'pageshow', function () {
+
+                    setTimeout(function () {
+                        showEmptyTable('choicePart1Task1Rep');
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1 rep-->
+        <div data-role="page" id="choicePart1Task1Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welches Bild war dabei? </br> 
+                    Wählen Sie 1 Bild aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task1Rep">
+
+                    <tr> 
+
+                        <td id="pic1Td1Taks1Rep" data-accurate="right" onclick="selectPicPart1Task1Rep(this, document.getElementById('fieldsChoiceTable1Task1Rep'), 1);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task1pic1rep.png"/> 
+                            </div>
+
+                            <div id="task1Overlay1Rep" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Taks1Rep" data-accurate="wrong" onclick="selectPicPart1Task1Rep(this, document.getElementById('fieldsChoiceTable1Task1Rep'), 1);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task1pic2rep.png"/> 
+                            </div>
+
+                            <div id="task1Overlay2Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask1Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTaks1Rep();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask1Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task1PositionHint1Rep" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task1pic1rep.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask1Rep', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task1PositionHint1Rep").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task1Rep', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task1Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task1TargetField1Rep" onclick="selectTargetFieldTask1(this);"> </td>
+                        <td class="fieldBorder" id="task1TargetField2Rep" onclick="selectTargetFieldTask1(this);"> </td> 
+                        <td class="fieldBorder" id="task1TargetField3Rep" onclick="selectTargetFieldTask1(this);"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task1TargetField4Rep" onclick="selectTargetFieldTask1(this);"> </td>
+                        <td class="fieldBorder" id="task1TargetField5Rep" onclick="selectTargetFieldTask1(this);"> </td> 
+                        <td class="fieldBorder" id="task1TargetField6Rep" onclick="selectTargetFieldTask1(this);"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task1TargetField7Rep" onclick="selectTargetFieldTask1(this);"> </td>
+                        <td class="fieldBorder" id="task1TargetField8Rep" onclick="selectTargetFieldTask1(this);"> </td> 
+                        <td class="fieldBorder" id="task1TargetField9Rep" onclick="selectTargetFieldTask1(this);"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+                <div class="fieldBorder" id="task1ChoicePic1Rep" style="position: absolute; top: 40%; left: 5%; vertical-align:bottom;" onclick="selectPicPart2Task1(this);">  
+                    <image style="vertical-align:bottom;" src="css\images\pics\task1pic1rep.png"/>
+                </div>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task1Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask1Rep();"/>
+
+
+            </div>
+
+
+
+        </div> 
+
+
+    </body>
+
+
+
+</html>
