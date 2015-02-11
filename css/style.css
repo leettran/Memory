@@ -11,17 +11,83 @@
 @media only screen and (orientation: landscape){
 
     
+    .f1_container {
+    position: relative;
+    /*margin:10px;*/
+    width: inherit;
+    height: inherit;
+    z-index : 1;
+    float:left;
+}
+.f1_container {
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+.f1_card {
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: all 2.0s linear;
+    transform-style: preserve-3d;
+    transition: all 2.0s linear;
+}
+.f1_container.active .f1_card {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    /*box-shadow: -1px 1px 1px #aaa;*/
+}
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.face.back {
+    display: block;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    box-sizing: border-box;
+    color: transparent;
+    text-align: center;
+    background-color: transparent;
+}
+
+    
+
+   
+    .flipContainer {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        perspective: 1000;
+        transition:  height 4s, transform 4s;
+    }
+
+
     .selectedPic{
-       visibility: visible;
+        visibility: visible;
         opacity: 1;
         box-shadow: 3px 3px 3px 3px #64C463;
         border:5px solid #64C463;
         width: 145px;
         height: 145px;
-        
+
 
     }
     
+    .fieldsTableLeft{
+
+        border-collapse:separate; 
+        border-spacing: 0.5em;
+        margin-top: 50px;
+        width: 450px;
+        position: absolute;
+        top: 10%;
+        left: 0.5%;
+        
+    }
+
     .fieldsTableRight{
 
         border-collapse:separate; 
@@ -30,12 +96,11 @@
         width: 450px;
         position: absolute;
         top: 8%;
-        right: 8%;
-        /*margin-right: -180px;*/
+        right: 5%;
         
     }
-    
-     .fieldsTableCentered{
+
+    .fieldsTableCentered{
 
         border-collapse:separate; 
         border-spacing: 1em;
@@ -45,10 +110,10 @@
         top: 5%;
         right: 50%;
         margin-right: -180px;
-        
+
     }
-    
-     .fieldsTableChoice{
+
+    .fieldsTableChoice{
 
         border-collapse:separate; 
         border-spacing: 1em;
@@ -58,20 +123,29 @@
         top: 40%;
         right: 50%;
         margin-right: -160px;
-        
+
     }
-    
-   
-    
+
+
+
     .fieldBorder{
         border:1px solid black;
         min-width: 145px;
         min-height: 145px;
         width: 145px;
         height: 145px;
-        
+
     }
     
+    .fieldWithoutBorder{
+        border:0px solid transparent;
+        min-width: 145px;
+        min-height: 145px;
+        width: 145px;
+        height: 145px;
+
+    }
+
     .tableHint{
         font-size: 30px;
         color: black;
@@ -83,8 +157,8 @@
         left: 10%;
         right: 10%;
     }
-    
-     .choiceHint{
+
+    .choiceHint{
         font-size: 30px;
         color: black;
         text-shadow: none;
@@ -94,10 +168,10 @@
         top: 30%;
         left: 10%;
         right: 10%;
-        
+
     }
-    
-     .choiceHintPopupBottom{
+
+    .choiceHintPopupBottom{
         font-size: 30px;
         color: red;
         text-shadow: none;
@@ -108,17 +182,17 @@
         left: 1%;
         right: 30%;
     }
-    
+
     .square {
         position: absolute;
         top: 35%;
         left: 45%;
         width: 130px;
         height: 130px;
-/*        background: red; */
+        /*        background: red; */
     }
-    
-    
+
+
     .triangle {
         position: absolute;
         top: 25%;
@@ -484,7 +558,7 @@
         height: auto;
         min-height:100%;
     }
-    
+
     .firstPage{
         background-image: url('images/bg/bg-tagestipp.png');
         background-color: transparent;
@@ -506,7 +580,7 @@
         left: 10%;
         right: 10%;
     }
-    
+
     .hintTextBig{
         font-size: 60px;
         color: black;
@@ -582,10 +656,10 @@
         left: 5%;
         right: 5%;
     }
-    
-    
-     .defaultButtonTest{
-        
+
+
+    .defaultButtonTest{
+
         background-size: 100%;
         background-repeat:no-repeat;       
         height: 88px;

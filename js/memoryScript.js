@@ -1,5 +1,6 @@
-/* 
- * This script contains the interaction logic of the Task: Memory
+
+
+/* This script contains the interaction logic of the Task: Memory
  */
 
 
@@ -16,9 +17,17 @@ var picSelectedPart1 = false;
 var hintPopupText = "Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie 'Weiter'";
 var hintPopuptext2 = "Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut an und wählen Sie eine andere Position oder ein freies Feld am linken Rand";
 var hintpopupText3 = "Bitte positionieren Sie das Bild zuerst";
+
 var canSwitchToNextTask = false;
 var selectedPicIdPart2Task1;
 var willCorrectTask1 = false;
+var picSelectedPart2Task1 = false;
+
+var selectedPicsCountTask2 = 0;
+var selectedPicIdPart2Task2;
+var willCorrectTask2 = false;
+var picSelectedPart2Task2 = false;
+
 
 
 // shows an empty table and then given page
@@ -67,13 +76,11 @@ function showFollowingPage(nextPage) {
 
     try
     {
-        // show hint page
-        $.mobile.changePage('#hintPage', {transition: "flip"});
 
-        // then show next page 
+        //  show next page 
         setTimeout(function () {
             $.mobile.changePage('#' + nextPage, {transition: "flip"});
-        }, 4000);
+        }, 3000);
 
     }
 
@@ -442,7 +449,7 @@ function switchToNextPartTaks1() {
 
             $("#task1Overlay1").css("visibility", "visible");
             $("#task1Overlay2").css("visibility", "visible");
-            
+
 
             // switch to next page
             setTimeout(function () {
@@ -480,7 +487,7 @@ function switchToNextPartTaks1Rep() {
 
             $("#task1Overlay1Rep").css("visibility", "visible");
             $("#task1Overlay2Rep").css("visibility", "visible");
-            
+
 
             // switch to next page
             setTimeout(function () {
@@ -522,7 +529,7 @@ function selectPicPart2Task1(clickedPic) {
             {
                 // select pic
                 $("#" + clickedPicId).attr("class", "selectedPic");
-                picSelectedPart2Trial = true;
+                picSelectedPart2Task1 = true;
                 selectedPicIdPart2Task1 = clickedPicId;
 
 
@@ -532,7 +539,7 @@ function selectPicPart2Task1(clickedPic) {
             {
                 // deselect pic
                 $("#" + clickedPicId).attr("class", "fieldBorder");
-                picSelectedPart2Trial = false;
+                picSelectedPart2Task1 = false;
                 selectedPicIdPart2Task1 = null;
             }
 
@@ -556,10 +563,10 @@ function selectTargetFieldTask1(clickedField) {
     try
     {
         // only if a pic was selected
-        if (picSelectedPart2Trial)
+        if (picSelectedPart2Task1)
         {
             // reset status
-            picSelectedPart2Trial = false;
+            picSelectedPart2Task1 = false;
 
             // highlight target field
             $("#" + clickedFieldId).attr("class", "selectedPic");
@@ -592,7 +599,7 @@ function selectTargetFieldTask1(clickedField) {
             $("#" + clickedFieldId).attr("class", "selectedPic");
 
             selectedPicIdPart2Task1 = clickedFieldId;
-            picSelectedPart2Trial = true;
+            picSelectedPart2Task1 = true;
             canSwitchToNextTask = false;
         }
 
@@ -617,10 +624,10 @@ function selectTargetFieldTask1Rep(clickedField) {
     try
     {
         // only if a pic was selected
-        if (picSelectedPart2Trial)
+        if (picSelectedPart2Task1)
         {
             // reset status
-            picSelectedPart2Trial = false;
+            picSelectedPart2Task1 = false;
 
             // highlight target field
             $("#" + clickedFieldId).attr("class", "selectedPic");
@@ -653,8 +660,9 @@ function selectTargetFieldTask1Rep(clickedField) {
             $("#" + clickedFieldId).attr("class", "selectedPic");
 
             selectedPicIdPart2Task1 = clickedFieldId;
-            picSelectedPart2Trial = true;
+            picSelectedPart2Task1 = true;
             canSwitchToNextTask = false;
+
         }
 
 
@@ -670,16 +678,16 @@ function selectTargetFieldTask1Rep(clickedField) {
 
 
 // switches to next task
-function switchToNextTask1(){
-    
+function switchToNextTask1() {
+
     try
     {
         if (canSwitchToNextTask)
         {
-            showEmptyTable('tableWithPicsTask1Rep');
+            showHintPage('tableWithPicsTask1Rep');
             canSwitchToNextTask = false;
             picSelectedPart1 = false;
-            
+
         }
 
         else
@@ -694,7 +702,7 @@ function switchToNextTask1(){
             }, 2000);
         }
     }
-    
+
     catch (error) {
         console.log("An error has been occured! " + error);
     }
@@ -703,13 +711,13 @@ function switchToNextTask1(){
 
 
 // switches to next task
-function switchToNextTask1Rep(){
-    
+function switchToNextTask1Rep() {
+
     try
     {
         if (canSwitchToNextTask)
         {
-            showEmptyTable('tableWithPicsTask2');
+            showHintPage('tableWithPicsTask2');
             canSwitchToNextTask = false;
             picSelectedPart1 = false;
         }
@@ -726,7 +734,295 @@ function switchToNextTask1Rep(){
             }, 2000);
         }
     }
-    
+
+    catch (error) {
+        console.log("An error has been occured! " + error);
+    }
+}
+
+
+function selectPicPart1Task2(clickedTd, tdsTable, rightPicsCount) {
+
+    var clickedTdId = clickedTd.id;
+    var allTds = tdsTable.getElementsByTagName('td');
+    var currentClass = $("#" + clickedTdId).attr('class');
+
+    try
+    {
+        // only if less than 2 pics selected
+        if (selectedPicsCountTask2 < rightPicsCount)
+        {
+
+            if (currentClass !== "selectedPic")
+            {
+                // highlight pic
+                $("#" + clickedTdId).attr("class", "selectedPic");
+
+
+                // deselect other pics
+//            for (var i = 0; i < allTds.length; i++) {
+//                var id = allTds[i].id;
+//
+//                if (id !== clickedTdId) {
+//
+//                    $('#' + id).attr('class', '');
+//                }
+//
+//            }
+                // increment counter
+                selectedPicsCountTask2++;
+
+                // set flag when selection completed
+                if (selectedPicsCountTask2 === 2)
+                    picSelectedPart1 = true;
+                // show hint popup
+                $("#hintPopupTask2").html(hintPopupText);
+                $("#hintPopupTask2").css("visibility", "visible");
+
+            }
+
+            else if (currentClass === "selectedPic")
+            {
+                // deselct pic
+                $("#" + clickedTdId).attr("class", "");
+
+                // decrement counter 
+                selectedPicsCountTask2--;
+                picSelectedPart1 = false;
+                if (selectedPicsCountTask2 === 0)
+                    $("#hintPopupTask2").css("visibility", "hidden");
+            }
+
+        }
+
+        // if already 2 pics selected
+        else if (selectedPicsCountTask2 >= rightPicsCount)
+        {
+            // allow only deselection
+            if (currentClass === "selectedPic")
+            {
+                // deselct pic
+                $("#" + clickedTdId).attr("class", "");
+
+                // decrement counter 
+                selectedPicsCountTask2--;
+                picSelectedPart1 = false;
+                if (selectedPicsCountTask2 === 0)
+                    $("#hintPopupTask2").css("visibility", "hidden");
+            }
+        }
+
+    }
+
+    catch (error)
+    {
+        console.log("An error has been occured! " + error);
+    }
+
+}
+
+
+// switches to next part of the task
+function switchToNextPartTaks2() {
+
+    try
+    {
+        // if only one pic is selected
+        if (!picSelectedPart1 && selectedPicsCountTask2 === 0)
+        {
+            // show hint popup
+            $("#hintPopupTask2").html("Bitte wählen Sie 2 Bilder aus");
+            $("#hintPopupTask2").css("visibility", "visible");
+        }
+
+        // if no pic is selected
+        else if (!picSelectedPart1 && selectedPicsCountTask2 < 2)
+        {
+            // show hint popup
+            $("#hintPopupTask2").html("Bitte wählen Sie ein Bild aus");
+            $("#hintPopupTask2").css("visibility", "visible");
+        }
+
+        // if a pic was selected
+        else
+        {
+            // show overlays
+
+            $("#task2Overlay1").css("visibility", "visible");
+            $("#task2Overlay2").css("visibility", "visible");
+            $("#task2Overlay3").css("visibility", "visible");
+            $("#task2Overlay4").css("visibility", "visible");
+
+
+            // switch to next page
+            setTimeout(function () {
+
+                $.mobile.changePage('#bridgingPageTask2', {transition: "flip"});
+            }, 3000);
+        }
+    }
+
+    catch (error)
+    {
+        console.log("An error has been occured! " + error);
+    }
+
+}
+
+
+// selects pic during 2. part of trialtask
+function selectPicPart2Task2(clickedPic, choiceTableId) {
+
+    var clickedPicId = clickedPic.id;
+    var currentClass = $("#" + clickedPicId).attr('class');
+    var allDivs = choiceTableId.getElementsByTagName('div');
+    var hasPic = $("#" + clickedPicId).children('img').length > 0;
+
+    try
+    {
+
+        if (willCorrectTask2 && !hasPic)
+        {
+            selectTargetFieldTask2(clickedPic);
+            willCorrectTask2 = false;
+            canSwitchToNextTask = false;
+        }
+
+        else if (!willCorrectTask2 && hasPic)
+        {
+
+            if (currentClass !== "selectedPic")
+            {
+                // select pic
+                $("#" + clickedPicId).attr("class", "selectedPic");
+                picSelectedPart2Task2 = true;
+                selectedPicIdPart2Task2 = clickedPicId;
+
+                // deselect other pics
+                for (var i = 0; i < allDivs.length; i++) {
+                    var id = allDivs[i].id;
+
+                    if (id !== clickedPicId) {
+
+                        $('#' + id).attr('class', 'fieldBorder');
+                    }
+
+                }
+
+            }
+
+            else
+            {
+                // deselect pic
+                $("#" + clickedPicId).attr("class", "fieldBorder");
+                picSelectedPart2Task2 = false;
+                selectedPicIdPart2Task2 = null;
+            }
+
+        }
+
+    }
+
+    catch (error) {
+        console.log("An error has been occured! " + error);
+    }
+
+}
+
+
+// selects target Field during trial task
+function selectTargetFieldTask2(clickedField, targetsTable) {
+
+    var clickedFieldId = clickedField.id;
+    willCorrectTask2 = $("#" + clickedFieldId).children('img').length > 0 && !picSelectedPart2Task2;
+    var isEmpty = $("#" + clickedFieldId).children('img').length <= 0;
+
+    try
+    {
+        // only if a pic was selected
+        if (picSelectedPart2Task2 && isEmpty)
+        {
+            // reset status
+            picSelectedPart2Task2 = false;
+
+            // highlight target field
+            $("#" + clickedFieldId).attr("class", "selectedPic");
+            // move selected pic to target field
+            setTimeout(function () {
+
+                // not to same field
+                if (selectedPicIdPart2Task2 !== clickedFieldId)
+                {
+                    $("#" + selectedPicIdPart2Task2).children('img').clone().appendTo("#" + clickedFieldId);
+                    $("#" + selectedPicIdPart2Task2).find('img').remove();
+                    // remove highlighting from selected pic and target field
+                    $("#" + selectedPicIdPart2Task2).attr("class", "fieldBorder");
+                    $("#" + clickedFieldId).attr("class", "fieldBorder");
+
+                    // show correction hint
+                    $("#hintPopup2Task2").html(hintPopuptext2);
+                    $("#hintPopup2Task2").css("visibility", "visible");
+                }
+
+            }, 300);
+
+
+        }
+
+        // if user will correct selection
+        else if (willCorrectTask2 && !isEmpty)
+        {
+            // highlight target field
+            $("#" + clickedFieldId).attr("class", "selectedPic");
+
+            selectedPicIdPart2Task2 = clickedFieldId;
+            picSelectedPart2Task2 = true;
+            canSwitchToNextTask = false;
+        }
+
+        // check if 2 iamges are placed delayed
+        setTimeout(function () {
+            var placedPics = targetsTable.getElementsByTagName('img');
+            if (placedPics.length === 2)
+                canSwitchToNextTask = true;
+        }, 1300);
+
+
+    }
+
+    catch (error) {
+        console.log("An error has been occured! " + error);
+    }
+
+}
+
+
+// switches to next task
+function switchToNextTask2() {
+
+    try
+    {
+        if (canSwitchToNextTask)
+        {
+            showHintPage('tableWithPicsTask2Rep');
+            canSwitchToNextTask = false;
+            picSelectedPart1 = false;
+
+        }
+
+        else
+        {
+            // show selection hint
+            $("#hintPopup2Task2").html(hintpopupText3);
+            $("#hintPopup2Task2").css("visibility", "visible");
+
+            setTimeout(function () {
+                // hide hint
+                $("#hintPopup2Task2").css("visibility", "hidden");
+            }, 2000);
+        }
+    }
+
     catch (error) {
         console.log("An error has been occured! " + error);
     }
