@@ -120,7 +120,7 @@
         margin-top: 50px;
         width: 340px;
         position: absolute;
-        top: 40%;
+        top: 10%;
         right: 50%;
         margin-right: -160px;
 
@@ -165,7 +165,7 @@
         text-align: center;
         font-weight: bold;  
         position: absolute;
-        top: 30%;
+        top: 5%;
         left: 10%;
         right: 10%;
 
@@ -178,7 +178,7 @@
         text-align: center;
         font-weight: bold;  
         position: absolute;
-        bottom: 0.5%;
+        bottom: 2%;
         left: 1%;
         right: 30%;
     }

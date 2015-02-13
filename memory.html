@@ -255,15 +255,6 @@ and open the template in the editor.
 
 
 
-//                    function showJustForWhile() {
-//                        setTimeout(function () {
-//                            $.mobile.changePage('#memoryDemo3', {transition: "none"});
-//                        }, 3000);
-//                    }
-//
-//
-//                    showJustForWhile();
-
                 });
             </script>
 
@@ -384,7 +375,7 @@ and open the template in the editor.
                                     bottom: '40' + '%'
                                 }, 1000);
 
-                            }, 1000);
+                            }, 2000);
 
 
                         }, 500);
@@ -479,7 +470,7 @@ and open the template in the editor.
                                 });
 
 
-                            }, 1000);
+                            }, 3000);
 
 
                         }, 500);
@@ -651,7 +642,7 @@ and open the template in the editor.
                                 $("#demoPic3").attr("class", "");
 
 
-                            }, 1000);
+                            }, 2000);
 
 
                         }, 500);
@@ -700,7 +691,7 @@ and open the template in the editor.
 
                 </table>
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup5" style="visibility: hidden;"> Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie "Weiter"  </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup5" style="visibility: visible;"> Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie "Weiter"  </h1>
 
 
                 <image src="css\images\hand.png" id="demoHand5" style="position: absolute;bottom: 30%;left: 50%;z-index: 1000;"/>
@@ -817,44 +808,23 @@ and open the template in the editor.
                         $("#demoOverlay2").css("visibility", "hidden");
                         // remove distractor pics
                         $("#demoPic5").css("visibility", "hidden");
-                        translateRightPic();
+//                        translateRightPic();
+                        setTimeout(function () {
+                            // show hint
+                            $("#positionHint1").css("visibility", "visible");
 
-                    }
-
-                    function translateRightPic() {
-                        // get current pos 
-                        $("#demoPic4").css("position", "absolute");
-                        eTop = $('#demoPic4').offset().top + 2;
-                        eLeft = $('#demoPic4').offset().left + 2;
-
-                        // move pic
-                        $("#demoPic4").animate({
-                            left: 80 + 'px',
-                            top: 0 + 'px'
-                        }, 2000, function () {
+                            // go to next page
                             setTimeout(function () {
-                                // show hint
-                                $("#positionHint1").css("visibility", "visible");
 
-                                // go to next page
-                                setTimeout(function () {
+                                $.mobile.changePage('#memoryDemo11', {transition: "none"});
 
-                                    $.mobile.changePage('#memoryDemo11', {transition: "none"});
-                                    // reset translation of right pic
-                                    $("#demoPic4").animate({
-                                        left: -40 + 'px',
-                                        top: 0 + 'px'
-                                    }, 2000, function (){
-                                    $("#demoPic4").css("position", "relative");
-                                    });
-                                    
-                                }, 3000);
+                            }, 3000);
 
-                            }, 1000);
-
-                        });
+                        }, 1000);
 
                     }
+
+
 
 
                     $("#demoPic5").css("visibility", "visible");
@@ -865,12 +835,8 @@ and open the template in the editor.
                         $("#demoOverlay2").css("visibility", "visible");
                         // remove all distractors
                         setTimeout(function () {
-                            removeDistractorPics();
 
-//                            setTimeout(function () {
-//                                // next page
-//                                $.mobile.changePage('#memoryDemo10', {transition: "flip"});
-//                            }, 5000);
+                            removeDistractorPics();
 
                         }, 4000);
 
@@ -1016,7 +982,7 @@ and open the template in the editor.
 
                             // animate hand cursor to fields table 
                             $("#demoHand6").animate({
-                                left: '72' + '%',
+                                left: '62' + '%',
                                 top: '20' + '%'
                             }, 2000, function () {
                                 // select target field
@@ -1055,8 +1021,8 @@ and open the template in the editor.
                                                 left: '5' + '%',
                                                 top: '40' + '%'
                                             }, 500);
-                                            
-                                            
+
+
                                         });
 
                                     });
@@ -1376,7 +1342,7 @@ and open the template in the editor.
 
             <div data-role="content">
 
-
+                <h1 class="choiceHint" id="trialPositionHint1" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
 
                 <table class="fieldsTableChoice">
 
@@ -1433,10 +1399,10 @@ and open the template in the editor.
                         setTimeout(function () {
                             removeDistractorPics();
 
-                            setTimeout(function () {
-                                // next page
-                                $.mobile.changePage('#memoryTrial6', {transition: "flip"});
-                            }, 5000);
+//                            setTimeout(function () {
+//                                // next page
+//                                $.mobile.changePage('#memoryTrial6', {transition: "flip"});
+//                            }, 5000);
 
                         }, 4000);
 
@@ -1450,6 +1416,23 @@ and open the template in the editor.
                         $("#trialOverlay2").css("visibility", "hidden");
                         // remove distractor pics
                         $("#trialPic4").css("visibility", "hidden");
+                        // remove posible selection
+                        $("#trialPic4").attr("class", "");
+                        $("#trialPic5").attr("class", "");
+
+                        setTimeout(function () {
+                            // show hint
+                            $("#trialPositionHint1").css("visibility", "visible");
+
+                            // go to next page
+                            setTimeout(function () {
+
+                                $.mobile.changePage('#memoryTrial7', {transition: "none"});
+                                // readd pic again (for ectl. 2. invoke of trial)
+                                $("#trialPic4").css("visibility", "visible");
+                            }, 3000);
+
+                        }, 1000);
 
                     }
 
@@ -1463,64 +1446,64 @@ and open the template in the editor.
 
 
 
-        <!--6. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
-        <div data-role="page" id="memoryTrial6" data-dom-cache=true class="whitePage">
-
-            <div data-role="content">
-
-                <h1 class="choiceHint" id="trialPositionHint1" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
-
-                <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
-
-                    <tr> 
-
-                        <td id="trialPic6"> 
-
-                            <image style="vertical-align:bottom;"  src="css\images\pics\trialpic1.png"/>  
-
-
-                        </td>
-
-
-
-
-                    </tr>
-
-                </table>
-
-
-
-            </div>
-
-
-            <script type="text/javascript">
-
-                $(document).delegate('#memoryTrial6', 'pageshow', function () {
-
-
-                    setTimeout(function () {
-                        // show hint
-                        $("#trialPositionHint1").css("visibility", "visible");
-
-                        // go to next page
-                        setTimeout(function () {
-
-                            $.mobile.changePage('#memoryTrial7', {transition: "none"});
-                        }, 3000);
-
-                    }, 1000);
-
-
-
-
-
-
-
-                });
-            </script>
-
-
-        </div>
+        <!--        6. trial page for neurocare testbatterie containing a demonstration example to the task memory
+                <div data-role="page" id="memoryTrial6" data-dom-cache=true class="whitePage">
+        
+                    <div data-role="content">
+        
+                        <h1 class="choiceHint" id="trialPositionHint1" style="visibility: hidden;">Auf welcher Position lag das Bild auf dem Spielfeld?</h1>
+        
+                        <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
+        
+                            <tr> 
+        
+                                <td id="trialPic6"> 
+        
+                                    <image style="vertical-align:bottom;"  src="css\images\pics\trialpic1.png"/>  
+        
+        
+                                </td>
+        
+        
+        
+        
+                            </tr>
+        
+                        </table>
+        
+        
+        
+                    </div>
+        
+        
+                    <script type="text/javascript">
+        
+                        $(document).delegate('#memoryTrial6', 'pageshow', function () {
+        
+        
+                            setTimeout(function () {
+                                // show hint
+                                $("#trialPositionHint1").css("visibility", "visible");
+        
+                                // go to next page
+                                setTimeout(function () {
+        
+                                    $.mobile.changePage('#memoryTrial7', {transition: "none"});
+                                }, 3000);
+        
+                            }, 1000);
+        
+        
+        
+        
+        
+        
+        
+                        });
+                    </script>
+        
+        
+                </div>-->
 
 
         <!--7. trial page for neurocare testbatterie containing a demonstration example to the task memory-->
@@ -1595,7 +1578,7 @@ and open the template in the editor.
                         Möchten Sie das Beispiel noch einmal ansehen?
                     </p>
 
-                    <image src="css\images\btns-bg\bt-weiter.png" class="defaultButtonMiddle" onclick="showHintPage('memoryDemo1');"/>
+                    <image src="css\images\btns-bg\bt-weiter.png" class="defaultButtonMiddle" onclick="showHintPage('memoryDemo2');"/>
                 </center>
 
 
@@ -1711,7 +1694,7 @@ and open the template in the editor.
 
                     <tr> 
 
-                        <td id="pic1Td1Taks1" data-accurate="right" onclick="selectPicPart1Task1(this, document.getElementById('fieldsChoiceTable1Task1'), 1);">
+                        <td id="pic1Td1Task1" data-accurate="right" onclick="selectPicPart1Task1(this, document.getElementById('fieldsChoiceTable1Task1'), 1);">
                             <div z-index="10">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task1pic1.png"/> 
                             </div>
@@ -1722,7 +1705,7 @@ and open the template in the editor.
 
                         </td>
 
-                        <td id="pic2Td2Taks1" data-accurate="wrong" onclick="selectPicPart1Task1(this, document.getElementById('fieldsChoiceTable1Task1'), 1);">
+                        <td id="pic2Td2Task1" data-accurate="wrong" onclick="selectPicPart1Task1(this, document.getElementById('fieldsChoiceTable1Task1'), 1);">
                             <div z-index="2">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task1pic2.png"/> 
                             </div>
@@ -1740,7 +1723,7 @@ and open the template in the editor.
 
                 <h1 class="choiceHintPopupBottom" id="hintPopupTask1" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
 
-                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTaks1();"/>
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask1();"/>
 
             </div>
 
@@ -1969,7 +1952,7 @@ and open the template in the editor.
 
                     <tr> 
 
-                        <td id="pic1Td1Taks1Rep" data-accurate="right" onclick="selectPicPart1Task1Rep(this, document.getElementById('fieldsChoiceTable1Task1Rep'), 1);">
+                        <td id="pic1Td1Task1Rep" data-accurate="right" onclick="selectPicPart1Task1Rep(this, document.getElementById('fieldsChoiceTable1Task1Rep'), 1);">
                             <div z-index="10">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task1pic1rep.png"/> 
                             </div>
@@ -1980,7 +1963,7 @@ and open the template in the editor.
 
                         </td>
 
-                        <td id="pic2Td2Taks1Rep" data-accurate="wrong" onclick="selectPicPart1Task1Rep(this, document.getElementById('fieldsChoiceTable1Task1Rep'), 1);">
+                        <td id="pic2Td2Task1Rep" data-accurate="wrong" onclick="selectPicPart1Task1Rep(this, document.getElementById('fieldsChoiceTable1Task1Rep'), 1);">
                             <div z-index="2">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task1pic2rep.png"/> 
                             </div>
@@ -1998,7 +1981,7 @@ and open the template in the editor.
 
                 <h1 class="choiceHintPopupBottom" id="hintPopupTask1Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
 
-                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTaks1Rep();"/>
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask1Rep();"/>
 
             </div>
 
@@ -2237,11 +2220,11 @@ and open the template in the editor.
                 <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
                     Wählen Sie 2 Bilder aus </h1>
 
-                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task2">
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task2" style="margin-right: 0px;">
 
                     <tr> 
 
-                        <td id="pic1Td1Taks2" data-accurate="right" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
+                        <td id="pic1Td1Task2" data-accurate="right" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
                             <div z-index="10">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic4.png"/> 
                             </div>
@@ -2252,7 +2235,7 @@ and open the template in the editor.
 
                         </td>
 
-                        <td id="pic2Td2Taks2" data-accurate="wrong" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
+                        <td id="pic2Td2Task2" data-accurate="wrong" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
                             <div z-index="2">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic2.png"/> 
                             </div>
@@ -2263,7 +2246,7 @@ and open the template in the editor.
 
                         </td> 
 
-                        <td id="pic3Td3Taks2" data-accurate="wrong" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
+                        <td id="pic3Td3Task2" data-accurate="wrong" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
                             <div z-index="2">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic1.png"/> 
                             </div>
@@ -2274,7 +2257,7 @@ and open the template in the editor.
 
                         </td> 
 
-                        <td id="pic4Td4Taks2" data-accurate="wrong" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
+                        <td id="pic4Td4Task2" data-accurate="wrong" onclick="selectPicPart1Task2(this, document.getElementById('fieldsChoiceTable1Task2'), 2);">
                             <div z-index="2">
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic3.png"/> 
                             </div>
@@ -2292,7 +2275,7 @@ and open the template in the editor.
 
                 <h1 class="choiceHintPopupBottom" id="hintPopupTask2" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
 
-                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTaks2();"/>
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask2();"/>
 
             </div>
 
@@ -2449,6 +2432,4093 @@ and open the template in the editor.
 
 
         </div> 
+
+
+
+
+        <!--begin of the task2 Rep-->
+
+
+        <!--page presenting position of pic task2-->
+        <div data-role="page" id="tableWithPicsTask2Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task2FirstRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task2pic1rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task2SecondRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task2pic2Rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask2Rep', 'pageshow', function () {
+
+
+                    var firstPicId = "task2FirstRep";
+                    var secondPicId = "task2SecondRep";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task2Rep', {transition: "flip"});
+                        }, 10000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task2Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 2 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task2Rep" style="margin-right: 0px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task2Rep" data-accurate="right" onclick="selectPicPart1Task2Rep(this, document.getElementById('fieldsChoiceTable1Task2Rep'), 2);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task2pic3rep.png"/> 
+                            </div>
+
+                            <div id="task2Overlay1Rep" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task2Rep" data-accurate="wrong" onclick="selectPicPart1Task2Rep(this, document.getElementById('fieldsChoiceTable1Task2Rep'), 2);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task2pic1rep.png"/> 
+                            </div>
+
+                            <div id="task2Overlay2Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task2Rep" data-accurate="wrong" onclick="selectPicPart1Task2Rep(this, document.getElementById('fieldsChoiceTable1Task2Rep'), 2);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task2pic4rep.png"/> 
+                            </div>
+
+                            <div id="task2Overlay3Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task2Rep" data-accurate="wrong" onclick="selectPicPart1Task2Rep(this, document.getElementById('fieldsChoiceTable1Task2Rep'), 2);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task2pic2rep.png"/> 
+                            </div>
+
+                            <div id="task2Overlay4Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask2Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask2Rep()();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask2Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task2PositionHint1Rep" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: -80px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task2pic1rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task2pic2rep.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask2Rep', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task2PositionHint1Rep").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task2Rep', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task2Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask2Rep">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task2TargetField1Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td>
+                        <td class="fieldBorder" id="task2TargetField2Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td> 
+                        <td class="fieldBorder" id="task2TargetField3Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task2TargetField4Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td>
+                        <td class="fieldBorder" id="task2TargetField5Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td> 
+                        <td class="fieldBorder" id="task2TargetField6Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task2TargetField7Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td>
+                        <td class="fieldBorder" id="task2TargetField8Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td> 
+                        <td class="fieldBorder" id="task2TargetField9Rep" onclick="selectTargetFieldTask2Rep(this, document.getElementById('targetFieldsChoiceTableTask2Rep'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask2Rep">
+
+                    <tr>
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task2ChoicePic1Rep" onclick="selectPicPart2Task2Rep(this, document.getElementById('picsChoiceTableTask2Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task2pic1rep.png"/>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="fieldBorder" id="task2ChoicePic2Rep" onclick="selectPicPart2Task2Rep(this, document.getElementById('picsChoiceTableTask2Rep'));"> 
+                                <image style="vertical-align:bottom;" src="css\images\pics\task2pic2rep.png"/> 
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task2Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask2Rep();"/>
+
+
+            </div>
+
+        </div> 
+
+
+
+
+        <!--begin of the task3-->
+
+
+        <!--page presenting position of pic task3-->
+        <div data-role="page" id="tableWithPicsTask3" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task3First">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task3pic3.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task3Third">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task3pic1.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task3Second">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task3pic2.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+                        <td class="fieldBorder"> </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask3', 'pageshow', function () {
+
+
+                    var firstPicId = "task3First";
+                    var secondPicId = "task3Second";
+                    var thirdPicId = "task3Third";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task3', {transition: "flip"});
+                        }, 14000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task3" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 3 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task3" style="margin-right: -80px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task3" data-accurate="right" onclick="selectPicPart1Task3(this, document.getElementById('fieldsChoiceTable1Task3'), 3);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic2.png"/> 
+                            </div>
+
+                            <div id="task3Overlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task3" data-accurate="wrong" onclick="selectPicPart1Task3(this, document.getElementById('fieldsChoiceTable1Task3'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic5.png"/> 
+                            </div>
+
+                            <div id="task3Overlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task3" data-accurate="wrong" onclick="selectPicPart1Task3(this, document.getElementById('fieldsChoiceTable1Task3'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic3.png"/> 
+                            </div>
+
+                            <div id="task3Overlay3" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic4Td4Task3" data-accurate="wrong" onclick="selectPicPart1Task3(this, document.getElementById('fieldsChoiceTable1Task3'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic6.png"/> 
+                            </div>
+
+                            <div id="task3Overlay4" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic5Td5Task3" data-accurate="wrong" onclick="selectPicPart1Task3(this, document.getElementById('fieldsChoiceTable1Task3'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic4.png"/> 
+                            </div>
+
+                            <div id="task3Overlay5" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic6Td6Task3" data-accurate="wrong" onclick="selectPicPart1Task3(this, document.getElementById('fieldsChoiceTable1Task3'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic1.png"/> 
+                            </div>
+
+                            <div id="task3Overlay6" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask3" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask3();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask3" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task3PositionHint1" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 100px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task3pic2.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task3pic3.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task3pic1.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask3', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task3PositionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task3', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task3" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask3">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task3TargetField1" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td>
+                        <td class="fieldBorder" id="task3TargetField2" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td> 
+                        <td class="fieldBorder" id="task3TargetField3" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task3TargetField4" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td>
+                        <td class="fieldBorder" id="task3TargetField5" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td> 
+                        <td class="fieldBorder" id="task3TargetField6" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task3TargetField7" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td>
+                        <td class="fieldBorder" id="task3TargetField8" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td> 
+                        <td class="fieldBorder" id="task3TargetField9" onclick="selectTargetFieldTask3(this, document.getElementById('targetFieldsChoiceTableTask3'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask3">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task3ChoicePic1" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic2.png"/>
+                            </div>                      
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task3ChoicePic2" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic3.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            <div class="fieldBorder" id="task3ChoicePic3" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic1.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task3" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask3();"/>
+
+
+            </div>
+
+
+
+        </div> 
+
+
+
+
+        <!--begin of the task3 Rep-->
+
+
+        <!--page presenting position of pic task3-->
+        <div data-role="page" id="tableWithPicsTask3Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task3SecondRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task3pic1rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task3ThirdRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task3pic3rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task3FirstRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task3pic2rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask3Rep', 'pageshow', function () {
+
+
+                    var firstPicId = "task3FirstRep";
+                    var secondPicId = "task3SecondRep";
+                    var thirdPicId = "task3ThirdRep";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task3Rep', {transition: "flip"});
+                        }, 14000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task3Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 3 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task3Rep" style="margin-right: -80px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task3Rep" data-accurate="right" onclick="selectPicPart1Task3Rep(this, document.getElementById('fieldsChoiceTable1Task3Rep'), 3);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic4rep.png"/> 
+                            </div>
+
+                            <div id="task3Overlay1Rep" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task3Rep" data-accurate="wrong" onclick="selectPicPart1Task3Rep(this, document.getElementById('fieldsChoiceTable1Task3Rep'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic1rep.png"/> 
+                            </div>
+
+                            <div id="task3Overlay2Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task3Rep" data-accurate="wrong" onclick="selectPicPart1Task3Rep(this, document.getElementById('fieldsChoiceTable1Task3Rep'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic3rep.png"/> 
+                            </div>
+
+                            <div id="task3Overlay3Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic4Td4Task3Rep" data-accurate="wrong" onclick="selectPicPart1Task3Rep(this, document.getElementById('fieldsChoiceTable1Task3Rep'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic6rep.png"/> 
+                            </div>
+
+                            <div id="task3Overlay4Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic5Td5Task3Rep" data-accurate="wrong" onclick="selectPicPart1Task3Rep(this, document.getElementById('fieldsChoiceTable1Task3Rep'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic2rep.png"/> 
+                            </div>
+
+                            <div id="task3Overlay5Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic6Td6Task3Rep" data-accurate="wrong" onclick="selectPicPart1Task3Rep(this, document.getElementById('fieldsChoiceTable1Task3Rep'), 3);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic5rep.png"/> 
+                            </div>
+
+                            <div id="task3Overlay6Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask3Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask3Rep();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask3Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task3PositionHint1Rep" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 100px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task3pic1rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task3pic3rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task3pic2rep.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask3Rep', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task3PositionHint1Rep").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task3Rep', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+
+
+
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task3Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask3Rep">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task3TargetField1Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td>
+                        <td class="fieldBorder" id="task3TargetField2Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td> 
+                        <td class="fieldBorder" id="task3TargetField3Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task3TargetField4Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td>
+                        <td class="fieldBorder" id="task3TargetField5Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td> 
+                        <td class="fieldBorder" id="task3TargetField6Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task3TargetField7Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td>
+                        <td class="fieldBorder" id="task3TargetField8Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td> 
+                        <td class="fieldBorder" id="task3TargetField9Rep" onclick="selectTargetFieldTask3Rep(this, document.getElementById('targetFieldsChoiceTableTask3Rep'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask3Rep">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task3ChoicePic1Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic1rep.png"/>
+                            </div>                      
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task3ChoicePic2Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic3rep.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            <div class="fieldBorder" id="task3ChoicePic3Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task3pic2rep.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task3Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask3Rep();"/>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!--begin of the task4-->
+
+
+        <!--page presenting position of pic task3-->
+        <div data-role="page" id="tableWithPicsTask4" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task4First">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic2.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task4Third">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic1.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task4Second">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic4.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task4Fourth">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic3.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask4', 'pageshow', function () {
+
+
+                    var firstPicId = "task4First";
+                    var secondPicId = "task4Second";
+                    var thirdPicId = "task4Third";
+                    var fourthPicId = "task4Fourth";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+                        // show front pic4
+                        flipPic(fourthPicId, 14000);
+                        // flip back pic4
+                        flipPic(fourthPicId, 16000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task4', {transition: "flip"});
+                        }, 18000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task4" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 4 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task4" style="margin-right: 0px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task4" data-accurate="right" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic2.png"/> 
+                            </div>
+
+                            <div id="task4Overlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic6.png"/> 
+                            </div>
+
+                            <div id="task4Overlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic7.png"/> 
+                            </div>
+
+                            <div id="task4Overlay3" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic3.png"/> 
+                            </div>
+
+                            <div id="task4Overlay4" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic5Td5Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic4.png"/> 
+                            </div>
+
+                            <div id="task4Overlay5" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic6Td6Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic5.png"/> 
+                            </div>
+
+                            <div id="task4Overlay6" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic7Td7Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic8.png"/> 
+                            </div>
+
+                            <div id="task4Overlay7" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic8Td8Task4" data-accurate="wrong" onclick="selectPicPart1Task4(this, document.getElementById('fieldsChoiceTable1Task4'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic1.png"/> 
+                            </div>
+
+                            <div id="task4Overlay8" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask4" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask4();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask4" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task4PositionHint1" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 180px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic2.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic3.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic4.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic1.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask4', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task4PositionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task4', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task4" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask4">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task4TargetField1" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td>
+                        <td class="fieldBorder" id="task4TargetField2" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td> 
+                        <td class="fieldBorder" id="task4TargetField3" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task4TargetField4" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td>
+                        <td class="fieldBorder" id="task4TargetField5" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td> 
+                        <td class="fieldBorder" id="task4TargetField6" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task4TargetField7" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td>
+                        <td class="fieldBorder" id="task4TargetField8" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td> 
+                        <td class="fieldBorder" id="task4TargetField9" onclick="selectTargetFieldTask4(this, document.getElementById('targetFieldsChoiceTableTask4'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask4">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task4ChoicePic1" onclick="selectPicPart2Task4(this, document.getElementById('picsChoiceTableTask4'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic2.png"/>
+                            </div>                      
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task4ChoicePic2" onclick="selectPicPart2Task4(this, document.getElementById('picsChoiceTableTask4'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic3.png"/>
+                            </div>                       
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task4ChoicePic3" onclick="selectPicPart2Task4(this, document.getElementById('picsChoiceTableTask4'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic4.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task4ChoicePic4" onclick="selectPicPart2Task4(this, document.getElementById('picsChoiceTableTask4'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic1.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fieldWithoutBorder">  </td>
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task4" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask4();"/>
+
+
+            </div>
+
+        </div> 
+
+
+
+
+        <!--begin of the task4 Rep-->
+
+
+        <!--page presenting position of pic task3-->
+        <div data-role="page" id="tableWithPicsTask4Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task4FourthRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic4rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task4SecondRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic1rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task4ThirdRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic3rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task4FirstRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task4pic2rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask4Rep', 'pageshow', function () {
+
+
+                    var firstPicId = "task4FirstRep";
+                    var secondPicId = "task4SecondRep";
+                    var thirdPicId = "task4ThirdRep";
+                    var fourthPicId = "task4FourthRep";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+                        // show front pic4
+                        flipPic(fourthPicId, 14000);
+                        // flip back pic4
+                        flipPic(fourthPicId, 16000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task4Rep', {transition: "flip"});
+                        }, 18000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task4Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 4 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task4Rep" style="margin-right: 0px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task4Rep" data-accurate="right" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic7rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay1Rep" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic1rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay2Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic8rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay3Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic4rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay4Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic5Td5Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic2rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay5Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic6Td6Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic6rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay6Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic7Td7Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic3rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay7Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic8Td8Task4Rep" data-accurate="wrong" onclick="selectPicPart1Task4Rep(this, document.getElementById('fieldsChoiceTable1Task4Rep'), 4);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic5rep.png"/> 
+                            </div>
+
+                            <div id="task4Overlay8Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask4Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask4Rep();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask4Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task4PositionHint1Rep" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 180px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic1rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic4rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic2rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task4pic3rep.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask4Rep', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task4PositionHint1Rep").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task4Rep', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task4Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask4Rep">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task4TargetField1Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td>
+                        <td class="fieldBorder" id="task4TargetField2Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td> 
+                        <td class="fieldBorder" id="task4TargetField3Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task4TargetField4Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td>
+                        <td class="fieldBorder" id="task4TargetField5Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td> 
+                        <td class="fieldBorder" id="task4TargetField6Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task4TargetField7Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td>
+                        <td class="fieldBorder" id="task4TargetField8Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td> 
+                        <td class="fieldBorder" id="task4TargetField9Rep" onclick="selectTargetFieldTask4Rep(this, document.getElementById('targetFieldsChoiceTableTask4Rep'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask4Rep">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task4ChoicePic1Rep" onclick="selectPicPart2Task4Rep(this, document.getElementById('picsChoiceTableTask4Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic1rep.png"/>
+                            </div>                      
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task4ChoicePic2Rep" onclick="selectPicPart2Task4Rep(this, document.getElementById('picsChoiceTableTask4Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic4rep.png"/>
+                            </div>                       
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task4ChoicePic3Rep" onclick="selectPicPart2Task4Rep(this, document.getElementById('picsChoiceTableTask4Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic2rep.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task4ChoicePic4Rep" onclick="selectPicPart2Task4Rep(this, document.getElementById('picsChoiceTableTask4Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task4pic3rep.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td class="fieldWithoutBorder">  </td>
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task4Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask4Rep();"/>
+
+
+            </div>
+
+        </div>
+
+
+        <!--begin of the task5-->
+
+
+        <!--page presenting position of pic task5-->
+        <div data-role="page" id="tableWithPicsTask5" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5Third">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic5.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5First">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic3.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5Second">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic4.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5Fourth">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic2.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5Fifth">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic1.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td> 
+
+                        <td class="fieldBorder">  </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask5', 'pageshow', function () {
+
+
+                    var firstPicId = "task5First";
+                    var secondPicId = "task5Second";
+                    var thirdPicId = "task5Third";
+                    var fourthPicId = "task5Fourth";
+                    var fifthPicId = "task5Fifth";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+                        // show front pic4
+                        flipPic(fourthPicId, 14000);
+                        // flip back pic4
+                        flipPic(fourthPicId, 16000);
+                        // show front pic5
+                        flipPic(fifthPicId, 18000);
+                        // flip back pic5
+                        flipPic(fifthPicId, 20000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task5', {transition: "flip"});
+                        }, 22000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task5" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 5 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task5" style="margin-right: 80px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task5" data-accurate="right" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic4.png"/> 
+                            </div>
+
+                            <div id="task5Overlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic6.png"/> 
+                            </div>
+
+                            <div id="task5Overlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic3.png"/> 
+                            </div>
+
+                            <div id="task5Overlay3" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic8.png"/> 
+                            </div>
+
+                            <div id="task5Overlay4" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic5Td5Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic9.png"/> 
+                            </div>
+
+                            <div id="task5Overlay5" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic6Td6Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic2.png"/> 
+                            </div>
+
+                            <div id="task5Overlay6" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic7Td7Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic7.png"/> 
+                            </div>
+
+                            <div id="task5Overlay7" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic8Td8Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic1.png"/> 
+                            </div>
+
+                            <div id="task5Overlay8" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic9Td9Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic10.png"/> 
+                            </div>
+
+                            <div id="task5Overlay9" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic10Td10Task5" data-accurate="wrong" onclick="selectPicPart1Task5(this, document.getElementById('fieldsChoiceTable1Task5'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic5.png"/> 
+                            </div>
+
+                            <div id="task5Overlay10" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask5" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask5();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask5" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task5PositionHint1" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 270px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic4.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic3.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic2.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic1.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic5.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask5', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task5PositionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task5', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task5" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask5">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task5TargetField1" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td>
+                        <td class="fieldBorder" id="task5TargetField2" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td> 
+                        <td class="fieldBorder" id="task5TargetField3" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task5TargetField4" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td>
+                        <td class="fieldBorder" id="task5TargetField5" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td> 
+                        <td class="fieldBorder" id="task5TargetField6" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task5TargetField7" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td>
+                        <td class="fieldBorder" id="task5TargetField8" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td> 
+                        <td class="fieldBorder" id="task5TargetField9" onclick="selectTargetFieldTask5(this, document.getElementById('targetFieldsChoiceTableTask5'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask5">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task5ChoicePic1" onclick="selectPicPart2Task5(this, document.getElementById('picsChoiceTableTask5'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic4.png"/>
+                            </div>                      
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task5ChoicePic2" onclick="selectPicPart2Task5(this, document.getElementById('picsChoiceTableTask5'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic3.png"/>
+                            </div>                       
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task5ChoicePic3" onclick="selectPicPart2Task5(this, document.getElementById('picsChoiceTableTask5'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic2.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task5ChoicePic4" onclick="selectPicPart2Task5(this, document.getElementById('picsChoiceTableTask5'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic1.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            <div class="fieldBorder" id="task5ChoicePic5" onclick="selectPicPart2Task5(this, document.getElementById('picsChoiceTableTask5'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic5.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task5" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask5();"/>
+
+
+            </div>
+
+        </div> 
+
+
+
+        <!--begin of the task5 Rep-->
+
+
+        <!--page presenting position of pic task5-->
+        <div data-role="page" id="tableWithPicsTask5Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5ThirdRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic5rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task5FourthRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic3rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task5FirstRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic1rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task5FifthRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic4rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task5SecondRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task5pic2rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask5Rep', 'pageshow', function () {
+
+
+                    var firstPicId = "task5FirstRep";
+                    var secondPicId = "task5SecondRep";
+                    var thirdPicId = "task5ThirdRep";
+                    var fourthPicId = "task5FourthRep";
+                    var fifthPicId = "task5FifthRep";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+                        // show front pic4
+                        flipPic(fourthPicId, 14000);
+                        // flip back pic4
+                        flipPic(fourthPicId, 16000);
+                        // show front pic5
+                        flipPic(fifthPicId, 18000);
+                        // flip back pic5
+                        flipPic(fifthPicId, 20000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task5Rep', {transition: "flip"});
+                        }, 22000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task5Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 5 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task5Rep" style="margin-right: 80px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task5Rep" data-accurate="right" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic9rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay1Rep" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic3rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay2Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic2rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay3Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic2rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay4Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic5Td5Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic10rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay5Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic6Td6Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic8rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay6Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic7Td7Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic1rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay7Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic8Td8Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic6rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay8Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic9Td9Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic5rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay9Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic10Td10Task5Rep" data-accurate="wrong" onclick="selectPicPart1Task5Rep(this, document.getElementById('fieldsChoiceTable1Task5Rep'), 5);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic4rep.png"/> 
+                            </div>
+
+                            <div id="task5Overlay10Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask5Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask5Rep();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask5Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task5PositionHint1Rep" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 270px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic3rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic2rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic1rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic5rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task5pic4rep.png"/>  
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask5Rep', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task5PositionHint1Rep").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task5Rep', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task5Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask5Rep">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task5TargetField1Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td>
+                        <td class="fieldBorder" id="task5TargetField2Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td> 
+                        <td class="fieldBorder" id="task5TargetField3Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task5TargetField4Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td>
+                        <td class="fieldBorder" id="task5TargetField5Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td> 
+                        <td class="fieldBorder" id="task5TargetField6Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task5TargetField7Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td>
+                        <td class="fieldBorder" id="task5TargetField8Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td> 
+                        <td class="fieldBorder" id="task5TargetField9Rep" onclick="selectTargetFieldTask5Rep(this, document.getElementById('targetFieldsChoiceTableTask5Rep'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask5Rep">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task5ChoicePic1Rep" onclick="selectPicPart2Task5Rep(this, document.getElementById('picsChoiceTableTask5Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic3rep.png"/>
+                            </div>                      
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task5ChoicePic2Rep" onclick="selectPicPart2Task5Rep(this, document.getElementById('picsChoiceTableTask5Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic2rep.png"/>
+                            </div>                       
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task5ChoicePic3Rep" onclick="selectPicPart2Task5Rep(this, document.getElementById('picsChoiceTableTask5Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic1rep.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task5ChoicePic4Rep" onclick="selectPicPart2Task5Rep(this, document.getElementById('picsChoiceTableTask5Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic5rep.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            <div class="fieldBorder" id="task5ChoicePic5Rep" onclick="selectPicPart2Task5Rep(this, document.getElementById('picsChoiceTableTask5Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task5pic4rep.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task5Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask5Rep();"/>
+
+
+            </div>
+
+        </div> 
+
+
+
+        <!--begin of the task6-->
+
+
+        <!--page presenting position of pic task6-->
+        <div data-role="page" id="tableWithPicsTask6" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6Third">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic2.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task6Second">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic1.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6First">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic6.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6Sixth">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic4.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6Fourth">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic5.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6Fifth">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic3.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask6', 'pageshow', function () {
+
+
+                    var firstPicId = "task6First";
+                    var secondPicId = "task6Second";
+                    var thirdPicId = "task6Third";
+                    var fourthPicId = "task6Fourth";
+                    var fifthPicId = "task6Fifth";
+                    var sixthPicId = "task6Sixth";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+                        // show front pic4
+                        flipPic(fourthPicId, 14000);
+                        // flip back pic4
+                        flipPic(fourthPicId, 16000);
+                        // show front pic5
+                        flipPic(fifthPicId, 18000);
+                        // flip back pic5
+                        flipPic(fifthPicId, 20000);
+                        // show front pic6
+                        flipPic(sixthPicId, 22000);
+                        // flip back pic6
+                        flipPic(sixthPicId, 24000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task6', {transition: "flip"});
+                        }, 26000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task6" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 6 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task6" style="margin-right: 0px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task6" data-accurate="right" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic7.png"/> 
+                            </div>
+
+                            <div id="task6Overlay1" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic8.png"/> 
+                            </div>
+
+                            <div id="task6Overlay2" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic1.png"/> 
+                            </div>
+
+                            <div id="task6Overlay3" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic5.png"/> 
+                            </div>
+
+                            <div id="task6Overlay4" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr>
+
+                        <td id="pic5Td5Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic9.png"/> 
+                            </div>
+
+                            <div id="task6Overlay5" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic6Td6Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic6.png"/> 
+                            </div>
+
+                            <div id="task6Overlay6" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic7Td7Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic2.png"/> 
+                            </div>
+
+                            <div id="task6Overlay7" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic8Td8Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic9.png"/> 
+                            </div>
+
+                            <div id="task6Overlay8" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic9Td9Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic8.png"/> 
+                            </div>
+
+                            <div id="task6Overlay9" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic10Td10Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic4.png"/> 
+                            </div>
+
+                            <div id="task6Overlay10" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic11Td11Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic12.png"/> 
+                            </div>
+
+                            <div id="task6Overlay11" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic12Td12Task6" data-accurate="wrong" onclick="selectPicPart1Task6(this, document.getElementById('fieldsChoiceTable1Task6'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic3.png"/> 
+                            </div>
+
+                            <div id="task6Overlay12" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask6" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask6();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask6" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task6PositionHint1" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 100px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic1.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic5.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic6.png"/>  
+
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic2.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic4.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic3.png"/>  
+
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask6', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task6PositionHint1").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task6', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task6" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask6">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task6TargetField1" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td>
+                        <td class="fieldBorder" id="task6TargetField2" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td> 
+                        <td class="fieldBorder" id="task6TargetField3" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task6TargetField4" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td>
+                        <td class="fieldBorder" id="task6TargetField5" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td> 
+                        <td class="fieldBorder" id="task6TargetField6" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task6TargetField7" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td>
+                        <td class="fieldBorder" id="task6TargetField8" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td> 
+                        <td class="fieldBorder" id="task6TargetField9" onclick="selectTargetFieldTask6(this, document.getElementById('targetFieldsChoiceTableTask6'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask6">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task6ChoicePic1" onclick="selectPicPart2Task6(this, document.getElementById('picsChoiceTableTask6'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic1.png"/>
+                            </div>                      
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task6ChoicePic2" onclick="selectPicPart2Task6(this, document.getElementById('picsChoiceTableTask6'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic5.png"/>
+                            </div>                       
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task6ChoicePic3" onclick="selectPicPart2Task6(this, document.getElementById('picsChoiceTableTask6'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic6.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task6ChoicePic4" onclick="selectPicPart2Task6(this, document.getElementById('picsChoiceTableTask6'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic2.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            <div class="fieldBorder" id="task6ChoicePic5" onclick="selectPicPart2Task6(this, document.getElementById('picsChoiceTableTask6'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic4.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                        <div class="fieldBorder" id="task6ChoicePic6" onclick="selectPicPart2Task6(this, document.getElementById('picsChoiceTableTask6'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic3.png"/>
+                            </div>
+                        </td>
+                        
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task6" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask6();"/>
+
+
+            </div>
+
+        </div> 
+        
+        
+        
+        
+         <!--begin of the task6 Rep-->
+
+
+        <!--page presenting position of pic task6 rep-->
+        <div data-role="page" id="tableWithPicsTask6Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Merken Sie sich das Bild und seine Position </h1>
+                <table class="fieldsTableCentered">
+
+                    <tr> 
+
+                        <td class="fieldBorder"> </td>
+
+                        <td class="fieldBorder">
+                        
+                        <div class="f1_container" id="task6FourthRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic2rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </td> 
+
+                        <td class="fieldBorder">
+                        
+                        <div class="f1_container" id="task6FirstRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic4rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> 
+
+                            <div class="f1_container" id="task6FifthRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic5rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6SecondRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic3rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder"> 
+                        
+                        <div class="f1_container" id="task6SixthRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic1rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </td>
+
+                        <td class="fieldBorder"> </td> 
+
+                        <td class="fieldBorder">
+
+                            <div class="f1_container" id="task6ThirdRep">
+                                <div class="shadow f1_card">
+                                    <div class="front face">
+
+                                    </div>
+                                    <div class="back face center">
+                                        <img src="css\images\pics\task6pic6rep.png" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td> 
+
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#tableWithPicsTask6Rep', 'pageshow', function () {  
+
+
+                    var firstPicId = "task6FirstRep";
+                    var secondPicId = "task6SecondRep";
+                    var thirdPicId = "task6ThirdRep";
+                    var fourthPicId = "task6FourthRep";
+                    var fifthPicId = "task6FifthRep";
+                    var sixthPicId = "task6SixthRep";
+
+
+                    function flipPic(picId, duration) {
+                        setTimeout(function () {
+                            $('#' + picId).toggleClass("active");
+                        }, duration);
+                    }
+
+                    setTimeout(function () {
+                        // show front pic1
+                        flipPic(firstPicId, 2000);
+                        // flip back pic1
+                        flipPic(firstPicId, 4000);
+                        // show front pic2
+                        flipPic(secondPicId, 6000);
+                        // flip back pic2
+                        flipPic(secondPicId, 8000);
+                        // show front pic3
+                        flipPic(thirdPicId, 10000);
+                        // flip back pic3
+                        flipPic(thirdPicId, 12000);
+                        // show front pic4
+                        flipPic(fourthPicId, 14000);
+                        // flip back pic4
+                        flipPic(fourthPicId, 16000);
+                        // show front pic5
+                        flipPic(fifthPicId, 18000);
+                        // flip back pic5
+                        flipPic(fifthPicId, 20000);
+                        // show front pic6
+                        flipPic(sixthPicId, 22000);
+                        // flip back pic6
+                        flipPic(sixthPicId, 24000);
+
+                        setTimeout(function () {
+                            $.mobile.changePage('#choicePart1Task6Rep', {transition: "flip"});
+                        }, 26000);
+
+                    }, 2000);
+
+                });
+            </script>
+
+
+        </div> 
+
+
+        <!--choice presentation part 1-->
+        <div data-role="page" id="choicePart1Task6Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint">Welche Bilder waren dabei? </br> 
+                    Wählen Sie 6 Bilder aus </h1>
+
+                <table class="fieldsTableChoice" id="fieldsChoiceTable1Task6Rep" style="margin-right: 0px;">
+
+                    <tr> 
+
+                        <td id="pic1Td1Task6Rep" data-accurate="right" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="10">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic8rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay1Rep" z-index="200" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>  
+                            </div>
+
+                        </td>
+
+                        <td id="pic2Td2Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic4rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay2Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic3Td3Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic12rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay3Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic4Td4Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic1rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay4Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                    </tr>
+
+                    <tr>
+
+                        <td id="pic5Td5Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic6rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay5Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic6Td6Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic11rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay6Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td> 
+
+                        <td id="pic7Td7Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic5rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay7Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic8Td8Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic10rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay8Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td id="pic9Td9Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic7rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay9Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic10Td10Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic9rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay10Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\wrong.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic11Td11Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic3rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay11Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+                        <td id="pic12Td12Task6Rep" data-accurate="wrong" onclick="selectPicPart1Task6Rep(this, document.getElementById('fieldsChoiceTable1Task6Rep'), 6);">
+                            <div z-index="2">
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic2rep.png"/> 
+                            </div>
+
+                            <div id="task6Overlay12Rep" z-index="100" style="margin-top: -145px; visibility: hidden;">
+                                <image style="vertical-align:bottom;" src="css\images\pics\right.png"/>
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+                <h1 class="choiceHintPopupBottom" id="hintPopupTask6Rep" style="visibility: hidden;"> Bitte wählen Sie ein Bild aus </h1>
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextPartTask6Rep();"/>
+
+            </div>
+
+
+        </div>
+
+
+        <!--bridging page to part 2-->
+        <div data-role="page" id="bridgingPageTask6Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="choiceHint" id="task6PositionHint1Rep" style="visibility: hidden;">Auf welcher Position lagen die Bilder auf dem Spielfeld?</h1>
+
+                <table class="fieldsTableChoice" style="width: 150px; margin-right: 100px;">
+
+                    <tr> 
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic4rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic1rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic6rep.png"/>  
+
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic5rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic3rep.png"/>  
+
+
+                        </td>
+
+                        <td> 
+
+                            <image style="vertical-align:bottom;"  src="css\images\pics\task6pic2rep.png"/>  
+
+
+                        </td>
+
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+
+
+            <script type="text/javascript">
+
+                $(document).delegate('#bridgingPageTask6Rep', 'pageshow', function () {
+
+
+                    setTimeout(function () {
+                        // show hint
+                        $("#task6PositionHint1Rep").css("visibility", "visible");
+
+                        // go to next page
+                        setTimeout(function () {
+
+                            $.mobile.changePage('#choicePart2Task6Rep', {transition: "flip"});
+                        }, 3000);
+
+                    }, 1000);
+
+
+                });
+            </script>
+
+
+        </div>
+
+
+        <!--part 2 of task-->
+        <div data-role="page" id="choicePart2Task6Rep" data-dom-cache=true class="whitePage">
+
+            <div data-role="content">
+
+                <h1 class="tableHint">Tippen Sie das Bild mit dem Finger an und wählen Sie dann die richtige Position </h1>
+
+                <table class="fieldsTableRight" id="targetFieldsChoiceTableTask6Rep">
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task6TargetField1Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td>
+                        <td class="fieldBorder" id="task6TargetField2Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td> 
+                        <td class="fieldBorder" id="task6TargetField3Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task6TargetField4Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td>
+                        <td class="fieldBorder" id="task6TargetField5Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td> 
+                        <td class="fieldBorder" id="task6TargetField6Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td> 
+
+                    </tr>
+
+                    <tr> 
+
+                        <td class="fieldBorder" id="task6TargetField7Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td>
+                        <td class="fieldBorder" id="task6TargetField8Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td> 
+                        <td class="fieldBorder" id="task6TargetField9Rep" onclick="selectTargetFieldTask6Rep(this, document.getElementById('targetFieldsChoiceTableTask6Rep'));"> </td> 
+
+                    </tr>
+
+
+                </table>
+
+
+                <table class="fieldsTableLeft" id="picsChoiceTableTask6Rep">
+
+                    <tr>
+                        <td>                           
+                            <div class="fieldBorder" id="task6ChoicePic1Rep" onclick="selectPicPart2Task6Rep(this, document.getElementById('picsChoiceTableTask6Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic4rep.png"/>
+                            </div>                      
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task6ChoicePic2Rep" onclick="selectPicPart2Task6Rep(this, document.getElementById('picsChoiceTableTask6Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic1rep.png"/>
+                            </div>                       
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="fieldBorder" id="task6ChoicePic3Rep" onclick="selectPicPart2Task6Rep(this, document.getElementById('picsChoiceTableTask6Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic6rep.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <div class="fieldBorder" id="task6ChoicePic4Rep" onclick="selectPicPart2Task6Rep(this, document.getElementById('picsChoiceTableTask6Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic5rep.png"/>
+                            </div>
+                        </td>
+
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                    <tr>
+                        <td> 
+                            <div class="fieldBorder" id="task6ChoicePic5Rep" onclick="selectPicPart2Task6Rep(this, document.getElementById('picsChoiceTableTask6Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic3rep.png"/>
+                            </div>
+                        </td>
+
+                        <td> 
+                        <div class="fieldBorder" id="task6ChoicePic6Rep" onclick="selectPicPart2Task6Rep(this, document.getElementById('picsChoiceTableTask6Rep'));">  
+                                <image style="vertical-align:bottom;" src="css\images\pics\task6pic2rep.png"/>
+                            </div>
+                        </td>
+                        
+                        <td class="fieldWithoutBorder"> </td>
+                    </tr>
+
+                </table>
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task6Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
+                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask6Rep();"/>
+
+
+            </div>
+
+        </div> 
+        
+        
+       <!--end page of the task bildergeschichte-->
+        <div data-role="page" id="endPage" data-dom-cache=true class="introPage" >
+
+            <div data-role="content">
+
+                <image src="css\images\icons\tipp.png" class="infoIcon"/>
+
+                <center>
+                    <h1 class="taskEndText">Diese Aufgabe haben Sie geschafft!</h1>
+
+                </center>
+
+
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" />
+
+            </div>
+
+
+        </div> 
+
 
 
     </body>
