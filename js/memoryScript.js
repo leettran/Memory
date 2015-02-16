@@ -2621,6 +2621,84 @@ function selectPicPart1Task5(clickedTd, tdsTable, rightPicsCount) {
 
 
 // switches to next part of the task
+function switchToNextPartTask5() {
+
+    try
+    {
+        // if no pic is selected
+        if (selectedPicsCountTask5 === 0)
+        {
+            // show hint popup
+            $("#hintPopupTask5").html("Bitte wählen Sie 5 Bilder aus");
+            $("#hintPopupTask5").css("visibility", "visible");
+        }
+        
+        // if only 3 pics are selected
+        else if (selectedPicsCountTask5 === 4)
+        {
+            // show hint popup
+            $("#hintPopupTask5").html("Bitte wählen Sie 1 Bild aus");
+            $("#hintPopupTask5").css("visibility", "visible");
+        }
+        
+         // if only 3 pics are selected
+        else if (selectedPicsCountTask5 === 3)
+        {
+            // show hint popup
+            $("#hintPopupTask5").html("Bitte wählen Sie 2 Bild aus");
+            $("#hintPopupTask5").css("visibility", "visible");
+        }
+
+        // if only 2 pics are selected
+        else if (selectedPicsCountTask5 === 2)
+        {
+            // show hint popup
+            $("#hintPopupTask5").html("Bitte wählen Sie 3 Bilder aus");
+            $("#hintPopupTask5").css("visibility", "visible");
+        }
+        
+        // if only 1 pic is selected
+        else if (selectedPicsCountTask5 === 1)
+        {
+            // show hint popup
+            $("#hintPopupTask5").html("Bitte wählen Sie 4 Bild aus");
+            $("#hintPopupTask5").css("visibility", "visible");
+        }
+
+        // if 3 pics were selected
+        else if (selectedPicsCountTask5 === 5)
+        {
+            // show overlays
+
+            $("#task5Overlay1").css("visibility", "visible");
+            $("#task5Overlay2").css("visibility", "visible");
+            $("#task5Overlay3").css("visibility", "visible");
+            $("#task5Overlay4").css("visibility", "visible");
+            $("#task5Overlay5").css("visibility", "visible");
+            $("#task5Overlay6").css("visibility", "visible");
+            $("#task5Overlay7").css("visibility", "visible");
+            $("#task5Overlay8").css("visibility", "visible");
+            $("#task5Overlay9").css("visibility", "visible");
+            $("#task5Overlay10").css("visibility", "visible");
+
+
+            // switch to next page
+            setTimeout(function () {
+
+                $.mobile.changePage('#bridgingPageTask5', {transition: "flip"});
+            }, 3000);
+        }
+    }
+
+    catch (error)
+    {
+        console.log("An error has been occured! " + error);
+    }
+
+}
+
+
+// switches to next part of the task
 function switchToNextPartTask6() {
 
     try
