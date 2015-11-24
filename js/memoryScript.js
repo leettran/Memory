@@ -22,7 +22,7 @@ var picSetted = false;
 
 var picSelectedPart1 = false;
 var hintPopupText = "Wollen Sie sich korrigieren? Tippen Sie erneut das Bild an, dann verschwindet die Markierung. Sonst drücken Sie 'Weiter'";
-var hintPopuptext2 = "Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut an und wählen Sie eine andere Position oder ein freies Feld am linken Rand";
+var hintPopuptext2 = "";
 var hintpopupText3 = "Bitte positionieren Sie das Bild zuerst";
 
 // is used globally
@@ -93,7 +93,25 @@ var picSelectedPart2Task6Rep = false;
 
 
 
+// shows given page after a given time interval
+function showFollowingPageDelayed(page, delay)
+{
+    try
+    {
+        setTimeout(function () {
+            $.mobile.changePage('#' + page, {transition: "slide"});
+        }, delay);
 
+
+
+    }
+
+    catch (error) {
+        console.log("Error when switching to page: " + page + error);
+    }
+
+
+}
 
 //show page methods
 
@@ -103,7 +121,7 @@ function showEndPage() {
     {
        
         setTimeout(function () {
-            $.mobile.changePage('#endPage', {transition: "flip"});
+            $.mobile.changePage('#endPage', {transition: "slide"});
         }, 2000);
     }
 
@@ -122,12 +140,12 @@ function showPagesSuccessively(firstPage, secondPage) {
         if (picSetted)
             picSetted = false;
         // show hint page
-        $.mobile.changePage('#' + firstPage, {transition: "flip"});
+        $.mobile.changePage('#' + firstPage, {transition: "slide"});
 
         // then show next page 
         setTimeout(function () {
-            $.mobile.changePage('#' + secondPage, {transition: "none"});
-        }, 5000);
+            $.mobile.changePage('#' + secondPage, {transition: "slide"});
+        }, 6000);
 
     }
 
@@ -147,7 +165,7 @@ function showHintPage(nextPage) {
             picSetted = false;
         
         // show hint page
-        $.mobile.changePage('#hintPage', {transition: "flip"});
+        $.mobile.changePage('#hintPage', {transition: "slide"});
 
         // then show next page 
         setTimeout(function () {
@@ -170,7 +188,7 @@ function showFollowingPage(nextPage) {
 
         //  show next page 
         setTimeout(function () {
-            $.mobile.changePage('#' + nextPage, {transition: "flip"});
+            $.mobile.changePage('#' + nextPage, {transition: "slide"});
         }, 3000);
 
     }
@@ -193,7 +211,7 @@ function showFollowingPageImmediately(nextPage) {
 
         //  show next page 
         setTimeout(function () {
-            $.mobile.changePage('#' + nextPage, {transition: "flip"});
+            $.mobile.changePage('#' + nextPage, {transition: "slide"});
         }, 200);
 
     }
@@ -209,11 +227,11 @@ function showEmptyTable(nextPage) {
     try
     {
         // show hint page
-        $.mobile.changePage('#emptyTablePage', {transition: "flip"});
+        $.mobile.changePage('#emptyTablePage', {transition: "slide"});
 
         // then show next page 
         setTimeout(function () {
-            $.mobile.changePage('#' + nextPage, {transition: "flip"});
+            $.mobile.changePage('#' + nextPage, {transition: "slide"});
         }, 2000);
     }
 
@@ -233,7 +251,7 @@ function showBridgingPage() {
             if (picSetted)
             picSetted = false;
         
-            $.mobile.changePage('#bridgingPage2', {transition: "flip"});
+            $.mobile.changePage('#bridgingPage2', {transition: "slide"});
             // move image back for an invoke again of trial
             setTimeout(function () {
             $("#" + clickedFieldIdTrial).children('img').clone().appendTo("#" + selectedPicIdPart2Trial);
@@ -348,7 +366,7 @@ function switchToNextPartTask6Rep() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask6Rep', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask6Rep', {transition: "slide"});
             }, 3000);
         }
     }
@@ -492,7 +510,7 @@ function switchToNextPartTask5Rep() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask5Rep', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask5Rep', {transition: "slide"});
             }, 3000);
         }
     }
@@ -634,7 +652,7 @@ function switchToNextPartTask5() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask5', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask5', {transition: "slide"});
             }, 3000);
         }
     }
@@ -722,7 +740,7 @@ function switchToNextPartTask6() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask6', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask6', {transition: "slide"});
             }, 3000);
         }
     }
@@ -820,7 +838,7 @@ function switchToNextPartTask4Rep() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask4Rep', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask4Rep', {transition: "slide"});
             }, 3000);
         }
     }
@@ -920,7 +938,7 @@ function switchToNextTask4() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask4', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask4', {transition: "slide"});
             }, 3000);
         }
     }
@@ -1011,7 +1029,7 @@ function switchToNextPartTask3Rep() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask3Rep', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask3Rep', {transition: "slide"});
             }, 3000);
         }
     }
@@ -1103,7 +1121,7 @@ function switchToNextPartTask3() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask3', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask3', {transition: "slide"});
             }, 3000);
         }
     }
@@ -1183,7 +1201,7 @@ function switchToNextPartTask2Rep() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask2Rep', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask2Rep', {transition: "slide"});
             }, 3000);
         }
     }
@@ -1231,7 +1249,7 @@ function switchToNextPartTask2() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask2', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask2', {transition: "slide"});
             }, 3000);
         }
     }
@@ -1364,7 +1382,7 @@ function switchToNextPartTask1Rep() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask1Rep', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask1Rep', {transition: "slide"});
             }, 3000);
         }
     }
@@ -1401,7 +1419,7 @@ function switchToNextPartTask1() {
             // switch to next page
             setTimeout(function () {
 
-                $.mobile.changePage('#bridgingPageTask1', {transition: "flip"});
+                $.mobile.changePage('#bridgingPageTask1', {transition: "slide"});
             }, 3000);
         }
     }
@@ -3172,7 +3190,7 @@ function selectTargetFieldTrial(clickedField, targetsTable) {
                     $("#" + clickedFieldId).attr("class", "fieldBorder");
 
                     // show correction hint
-                    $("#hintPopupTrial2").html("Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut an und wählen Sie eine andere Position oder ein freies Feld am linken Rand");
+                    $("#hintPopupTrial2").html("");
                     $("#hintPopupTrial2").css("visibility", "visible");
                 }
 

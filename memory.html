@@ -47,7 +47,7 @@ and open the template in the editor.
 
                     function showJustForWhile() {
                         setTimeout(function () {
-                            $.mobile.changePage('#memoryIntro', {transition: "flip"});
+                            $.mobile.changePage('#memoryIntro', {transition: "pop"});
                         }, 4000);
 
                     }
@@ -70,25 +70,95 @@ and open the template in the editor.
 
             <div data-role="content">
 
-                <image src="css\images\icons\info.png" class="infoIcon"/>
+                <div class="wrap">
 
-                <center>
-                    <p class="introText">
+                    <!--instruction div-->
+                    <div class="floatleft">
 
-                        Gleich sehen Sie ein Spielfeld mit 9 verdeckten Karten. Auf der Rückseite einiger Karten sind Bilder versteckt. 
-                        Diese Bilder werden Ihnen nacheinander für einen kurzen Moment gezeigt. 
-                        Ihre Aufgabe ist es, sich die Bilder sowie ihre Position auf dem Spielfeld so gut wie möglich einzuprägen.
-                        Im Anschluss sollen Sie die Bilder aus einer Auswahl von Bildern wiedererkennen und mit dem Finger auswählen. 
-                        Danach sollen Sie die Bilder wieder ihrer ursprünglichen Position auf dem Spielfeld zuordnen. 
-                        Wenn Sie sich nicht mehr erinnern, raten Sie bitte.
-                        Es gibt mehrere Durchgänge, die Anzahl der Bilder, die Sie sich merken sollen, steigt im Laufe des Spiels an.
+                        <!--instruction header-->
+                        <div style="display: inline;">
 
-                    </p>
-                </center>
+                            <image src="css\images\icons\info.png" class="infoIcon"/>
+
+                            <h1 class="instructionHeader" >Was ist Ihre Aufgabe?</h1>
+
+                        </div>
+
+                        <!--instruction text-->
+                        <div class="instructionContent">
+                            <p class="instructionText">
+                                </br> 
+                                Gleich sehen Sie ein Spielfeld mit 9 verdeckten Karten. Auf der Rückseite einiger Karten sind Bilder versteckt. </br>
+                                Diese Bilder werden Ihnen nacheinander für einen kurzen Moment gezeigt. </br></br>
+                                Ihre Aufgabe ist es, sich die Bilder sowie ihre Position auf dem Spielfeld so gut wie möglich einzuprägen.</br>
+                                Im Anschluss sollen Sie die Bilder aus einer Auswahl von Bildern wiedererkennen und mit dem Finger auswählen. 
+                                Danach sollen Sie die Bilder wieder ihrer ursprünglichen Position auf dem Spielfeld zuordnen. </br></br>
+                                Wenn Sie sich nicht mehr erinnern, raten Sie bitte.</br>
+                                Es gibt mehrere Durchgänge und die Anzahl der Bilder, die Sie sich merken sollen, steigt im Laufe des Spiels an.
+
+                            </p>
+                        </div>
 
 
-                <!--only for tests! later uncomment the first line!-->
-                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="showFollowingPageImmediately('memoryIntroHint');"/>
+                    </div>
+
+
+
+                    <!--example div-->
+                    <div class="floatright">
+
+                        <h1 class="exampleHeader" >Beispiel:</h1>
+
+                        </br></br></br></br>
+
+                        <image src="css\images\examples\example.png" />
+
+
+                    </div>
+
+
+                    <div style="clear: both;">
+
+
+
+
+                    </div>      
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!--start button-->
+                <image src="css\images\btns-bg\bt-aufgabe-starten.png" class="startTaskButton" onclick="showPagesSuccessively('oneImageHint', 'tableWithPicsTask1');"/>
+
+                <!--                <image src="css\images\icons\info.png" class="infoIcon"/>
+                
+                                <center>
+                                    <p class="introText">
+                
+                                        Gleich sehen Sie ein Spielfeld mit 9 verdeckten Karten. Auf der Rückseite einiger Karten sind Bilder versteckt. 
+                                        Diese Bilder werden Ihnen nacheinander für einen kurzen Moment gezeigt. 
+                                        Ihre Aufgabe ist es, sich die Bilder sowie ihre Position auf dem Spielfeld so gut wie möglich einzuprägen.
+                                        Im Anschluss sollen Sie die Bilder aus einer Auswahl von Bildern wiedererkennen und mit dem Finger auswählen. 
+                                        Danach sollen Sie die Bilder wieder ihrer ursprünglichen Position auf dem Spielfeld zuordnen. 
+                                        Wenn Sie sich nicht mehr erinnern, raten Sie bitte.
+                                        Es gibt mehrere Durchgänge, die Anzahl der Bilder, die Sie sich merken sollen, steigt im Laufe des Spiels an.
+                
+                                    </p>
+                                </center>
+                
+                
+                                only for tests! later uncomment the first line!
+                                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="showFollowingPageImmediately('memoryIntroHint');"/>-->
 
             </div>
 
@@ -143,11 +213,18 @@ and open the template in the editor.
 
 
         <!--intro page for neurocare testbatterie containing a small introduction to the task alertness-->
-        <div data-role="page" id="oneImageHint" data-dom-cache=true class="introPage" >
+        <div data-role="page" id="oneImageHint" data-dom-cache=true class="whitePage" >
 
             <div data-role="content">
 
-                <image src="css\images\icons\info.png" class="infoIcon"/>
+                <image src="css\images\icons\tipp_70px.png" class="tippIconBig"/>
+                
+                <h1 class="transitionPageText" >Sie sehen gleich 1 Bild. Merken Sie sich seine Position auf dem Spielfeld</h1> 
+
+                <br>
+                <br>
+                
+<!--                <image src="css\images\icons\info.png" class="infoIcon"/>
 
                 <center>
                     <p class="hintTextBig">
@@ -155,117 +232,129 @@ and open the template in the editor.
                         Sie sehen gleich 1 Bild. Merken Sie sich seine Position auf dem Spielfeld
 
                     </p>
-                </center>
+                </center>-->
 
 
 
             </div>
 
-          
+
         </div>
-        
-        
-        <div data-role="page" id="twoImagesHint" data-dom-cache=true class="introPage" >
+
+
+        <div data-role="page" id="twoImagesHint" data-dom-cache=true class="whitePage" >
 
             <div data-role="content">
 
-                <image src="css\images\icons\info.png" class="infoIcon"/>
+                <image src="css\images\icons\tipp_70px.png" class="tippIconBig"/>
+                
+                <h1 class="transitionPageText" >Sie sehen gleich 2 Bilder. Merken Sie sich ihre Positionen auf dem Spielfeld</h1> 
 
-                <center>
+<!--                <center>
                     <p class="hintTextBig">
 
                         Sie sehen gleich 2 Bilder. Merken Sie sich ihre Positionen auf dem Spielfeld
 
                     </p>
-                </center>
+                </center>-->
 
 
 
             </div>
 
-          
+
         </div>
-        
-        <div data-role="page" id="threeImagesHint" data-dom-cache=true class="introPage" >
+
+        <div data-role="page" id="threeImagesHint" data-dom-cache=true class="whitePage" >
 
             <div data-role="content">
 
-                <image src="css\images\icons\info.png" class="infoIcon"/>
+                <image src="css\images\icons\tipp_70px.png" class="tippIconBig"/>
+                
+                 <h1 class="transitionPageText" >Sie sehen gleich 3 Bilder. Merken Sie sich ihre Positionen auf dem Spielfeld</h1> 
 
-                <center>
+<!--                <center>
                     <p class="hintTextBig">
 
                         Sie sehen gleich 3 Bilder. Merken Sie sich ihre Positionen auf dem Spielfeld
 
                     </p>
-                </center>
+                </center>-->
 
 
 
             </div>
 
-          
+
         </div>
-        
-        
-        <div data-role="page" id="overThreeImagesHint" data-dom-cache=true class="introPage" >
+
+
+        <div data-role="page" id="overThreeImagesHint" data-dom-cache=true class="whitePage" >
 
             <div data-role="content">
 
-                <image src="css\images\icons\info.png" class="infoIcon"/>
+                <image src="css\images\icons\tipp_70px.png" class="tippIconBig"/>
 
-                <center>
+                <h1 class="transitionPageText" >Von nun an müssen Sie nicht mehr zwischen mehreren Bildern wählen. Es erscheinen nur noch die Bilder,
+                        die Sie jeweils vorher gesehen haben.</h1> 
+<!--                <center>
                     <p class="hintTextBig">
 
                         Von nun an müssen Sie nicht mehr zwischen mehreren Bildern wählen. Es erscheinen nur noch die Bilder,
                         die Sie jeweils vorher gesehen haben.
 
                     </p>
-                </center>
+                </center>-->
 
 
 
             </div>
 
-          
+
         </div>
-        
-         <!--hint page to show some hints-->
+
+        <!--hint page to show some hints-->
         <div data-role="page" id="hintAfterShowingImagePage" data-dom-cache=true class="whitePage">
 
             <div data-role="content">
+                
+                <h1 class="transitionPageText" >Welches Bild haben Sie an welcher Stelle gesehen? </br>
+                        Setzen Sie es an die richtige Position.</h1> 
 
-                <center>
+<!--                <center>
                     <h1 class="hintTextBig">Welches Bild haben Sie an welcher Stelle gesehen? </br>
                         Setzen Sie es an die richtige Position.
                     </h1>
 
-                </center>
+                </center>-->
 
 
             </div>
 
 
         </div> 
-         
-         <!--hint page to show some hints-->
+
+        <!--hint page to show some hints-->
         <div data-role="page" id="hintPage" data-dom-cache=true class="whitePage">
 
             <div data-role="content">
+                
+                <image src="css\images\icons\tipp_70px.png" class="tippIconBig"/>
 
-                <center>
+                <h1 class="transitionPageText" >Merken Sie sich das Bild und seine Position.</h1>
+<!--                <center>
                     <h1 class="hintTextBig">Merken Sie sich das Bild und seine Position</h1>
 
-                </center>
+                </center>-->
 
 
             </div>
 
 
         </div> 
-         
 
- <!--hint page to correct-->
+
+        <!--hint page to correct-->
         <div data-role="page" id="correctionHintPage" data-dom-cache=true class="whitePage">
 
             <div data-role="content">
@@ -284,10 +373,10 @@ and open the template in the editor.
 
         <!--demo example-->
 
-       
 
-        
-       
+
+
+
 
         <!--2. demo page for neurocare testbatterie containing a demonstration example to the task memory-->
         <div data-role="page" id="memoryDemo2" data-dom-cache=true class="whitePage">
@@ -465,7 +554,7 @@ and open the template in the editor.
 
                 </table>
 
-               
+
 
                 <image src="css\images\hand.png" id="demoHand6" style="position: absolute;top: 60%;left: 30%;z-index: 1000;"/>
 
@@ -1147,7 +1236,7 @@ and open the template in the editor.
         </div> 
 
 
-        
+
 
 
         <!--part 2 of task-->
@@ -1226,8 +1315,7 @@ and open the template in the editor.
 
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task1" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task1" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask1();"/>
@@ -1314,7 +1402,7 @@ and open the template in the editor.
                         flipPic(firstPicId, 2000);
                         // flip back pic1
                         flipPic(firstPicId, 6000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -1323,7 +1411,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task1Rep', {transition: "flip"});
                         }, 8000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -1378,8 +1466,8 @@ and open the template in the editor.
 
 
                 </table>
-                
-                
+
+
                 <table class="fieldsTableLeft" id="task1RepPicsTable">
 
                     <tr>
@@ -1394,7 +1482,7 @@ and open the template in the editor.
 
                         <td>
                             <div class="fieldBorder" id="task1RepChoicePic1" onclick="selectPicPart2Task1Rep(this, document.getElementById('task1RepPicsTable'));">  
-                                 <image style="vertical-align:bottom;" src="css\images\pics\task1pic1rep.png"/>
+                                <image style="vertical-align:bottom;" src="css\images\pics\task1pic1rep.png"/>
                             </div>
                         </td>
 
@@ -1415,11 +1503,10 @@ and open the template in the editor.
                     </tr>
 
                 </table>
-                
-                
-                                
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task1Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+
+
+
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task1Rep" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask1Rep();"/>
@@ -1527,7 +1614,7 @@ and open the template in the editor.
                         flipPic(secondPicId, 10000);
                         // flip back pic2
                         flipPic(secondPicId, 14000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -1536,7 +1623,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task2', {transition: "flip"});
                         }, 16000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -1552,7 +1639,7 @@ and open the template in the editor.
         </div> 
 
 
-       
+
 
 
         <!--part 2 of task-->
@@ -1618,12 +1705,12 @@ and open the template in the editor.
 
                     <tr>
                         <td class="fieldWithoutBorder"> 
-                         <div class="fieldBorder" id="task2ChoicePic3" onclick="selectPicPart2Task2(this, document.getElementById('picsChoiceTableTask2'));">  
+                            <div class="fieldBorder" id="task2ChoicePic3" onclick="selectPicPart2Task2(this, document.getElementById('picsChoiceTableTask2'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic1.png"/>
                             </div>
                         </td>
                         <td class="fieldWithoutBorder"> 
-                         <div class="fieldBorder" id="task2ChoicePic4" onclick="selectPicPart2Task2(this, document.getElementById('picsChoiceTableTask2'));">  
+                            <div class="fieldBorder" id="task2ChoicePic4" onclick="selectPicPart2Task2(this, document.getElementById('picsChoiceTableTask2'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic3.png"/>
                             </div>
                         </td>
@@ -1633,8 +1720,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task2" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task2" style="visibility: hidden;"> </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask2();"/>
@@ -1701,7 +1787,7 @@ and open the template in the editor.
 
                                     </div>
                                     <div class="back face center">
-                                        <img src="css\images\pics\task2pic2Rep.png" />
+                                        <img src="css\images\pics\task2pic2rep.png" />
                                     </div>
                                 </div>
                             </div>
@@ -1744,8 +1830,8 @@ and open the template in the editor.
                         flipPic(secondPicId, 10000);
                         // flip back pic2
                         flipPic(secondPicId, 14000);
-                        
-                         setTimeout(function () {
+
+                        setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
                         }, 15000);
@@ -1753,7 +1839,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task2Rep', {transition: "flip"});
                         }, 16000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -1769,7 +1855,7 @@ and open the template in the editor.
         </div> 
 
 
-      
+
 
         <!--part 2 of task-->
         <div data-role="page" id="choicePart2Task2Rep" data-dom-cache=true class="whitePage">
@@ -1834,12 +1920,12 @@ and open the template in the editor.
 
                     <tr>
                         <td class="fieldWithoutBorder"> 
-                        <div class="fieldBorder" id="task2ChoicePic3Rep" onclick="selectPicPart2Task2Rep(this, document.getElementById('picsChoiceTableTask2Rep'));"> 
+                            <div class="fieldBorder" id="task2ChoicePic3Rep" onclick="selectPicPart2Task2Rep(this, document.getElementById('picsChoiceTableTask2Rep'));"> 
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic2rep.png"/> 
                             </div>
                         </td>
                         <td class="fieldWithoutBorder">
-                        <div class="fieldBorder" id="task2ChoicePic4Rep" onclick="selectPicPart2Task2Rep(this, document.getElementById('picsChoiceTableTask2Rep'));"> 
+                            <div class="fieldBorder" id="task2ChoicePic4Rep" onclick="selectPicPart2Task2Rep(this, document.getElementById('picsChoiceTableTask2Rep'));"> 
                                 <image style="vertical-align:bottom;" src="css\images\pics\task2pic4rep.png"/> 
                             </div>
                         </td>
@@ -1849,8 +1935,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task2Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task2Rep" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask2Rep();"/>
@@ -1977,7 +2062,7 @@ and open the template in the editor.
                         flipPic(thirdPicId, 18000);
                         // flip back pic3
                         flipPic(thirdPicId, 22000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -1986,7 +2071,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task3', {transition: "flip"});
                         }, 24000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -2002,7 +2087,7 @@ and open the template in the editor.
         </div> 
 
 
-       
+
 
 
         <!--part 2 of task-->
@@ -2052,7 +2137,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="fieldWithoutBorder">
-                         <div class="fieldBorder" id="task3ChoicePic4" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
+                            <div class="fieldBorder" id="task3ChoicePic4" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task3pic4.png"/>
                             </div> 
                         </td>
@@ -2067,7 +2152,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="fieldWithoutBorder"> 
-                         <div class="fieldBorder" id="task3ChoicePic5" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
+                            <div class="fieldBorder" id="task3ChoicePic5" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task3pic3.png"/>
                             </div> 
                         </td>
@@ -2082,7 +2167,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="fieldWithoutBorder"> 
-                         <div class="fieldBorder" id="task3ChoicePic6" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
+                            <div class="fieldBorder" id="task3ChoicePic6" onclick="selectPicPart2Task3(this, document.getElementById('picsChoiceTableTask3'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task3pic1.png"/>
                             </div> 
                         </td>
@@ -2092,8 +2177,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task3" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task3" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask3();"/>
@@ -2223,7 +2307,7 @@ and open the template in the editor.
                         flipPic(thirdPicId, 18000);
                         // flip back pic3
                         flipPic(thirdPicId, 22000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -2232,7 +2316,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task3Rep', {transition: "flip"});
                         }, 24000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -2248,7 +2332,7 @@ and open the template in the editor.
         </div> 
 
 
-       
+
 
         <!--part 2 of task-->
         <div data-role="page" id="choicePart2Task3Rep" data-dom-cache=true class="whitePage">
@@ -2297,7 +2381,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="fieldWithoutBorder">
-                        <div class="fieldBorder" id="task3ChoicePic4Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
+                            <div class="fieldBorder" id="task3ChoicePic4Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task3pic4rep.png"/>
                             </div>
                         </td>
@@ -2312,7 +2396,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="fieldWithoutBorder">
-                        <div class="fieldBorder" id="task3ChoicePic5Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
+                            <div class="fieldBorder" id="task3ChoicePic5Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task3pic1rep.png"/>
                             </div>
                         </td>
@@ -2327,7 +2411,7 @@ and open the template in the editor.
                         </td>
 
                         <td class="fieldWithoutBorder"> 
-                        <div class="fieldBorder" id="task3ChoicePic6Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
+                            <div class="fieldBorder" id="task3ChoicePic6Rep" onclick="selectPicPart2Task3Rep(this, document.getElementById('picsChoiceTableTask3Rep'));">  
                                 <image style="vertical-align:bottom;" src="css\images\pics\task3pic2rep.png"/>
                             </div>
                         </td>
@@ -2337,8 +2421,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task3Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task3Rep" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask3Rep();"/>
@@ -2483,7 +2566,7 @@ and open the template in the editor.
                         flipPic(fourthPicId, 26000);
                         // flip back pic4
                         flipPic(fourthPicId, 30000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -2492,7 +2575,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task4', {transition: "flip"});
                         }, 32000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -2508,7 +2591,7 @@ and open the template in the editor.
         </div> 
 
 
-      
+
 
 
         <!--part 2 of task-->
@@ -2591,8 +2674,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task4" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task4" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask4();"/>
@@ -2739,7 +2821,7 @@ and open the template in the editor.
                         flipPic(fourthPicId, 26000);
                         // flip back pic4
                         flipPic(fourthPicId, 30000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -2748,7 +2830,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task4Rep', {transition: "flip"});
                         }, 32000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -2764,7 +2846,7 @@ and open the template in the editor.
         </div> 
 
 
-        
+
 
 
         <!--part 2 of task-->
@@ -2847,8 +2929,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task4Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task4Rep" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask4Rep();"/>
@@ -3012,7 +3093,7 @@ and open the template in the editor.
                         flipPic(fifthPicId, 34000);
                         // flip back pic5
                         flipPic(fifthPicId, 38000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -3021,7 +3102,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task5', {transition: "flip"});
                         }, 40000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -3037,10 +3118,10 @@ and open the template in the editor.
         </div> 
 
 
-        
 
 
-      
+
+
         <div data-role="page" id="choicePart2Task5" data-dom-cache=true class="whitePage">
 
             <div data-role="content">
@@ -3125,8 +3206,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task5" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task5" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask5();"/>
@@ -3291,8 +3371,8 @@ and open the template in the editor.
                         flipPic(fifthPicId, 34000);
                         // flip back pic5
                         flipPic(fifthPicId, 38000);
-                        
-                         setTimeout(function () {
+
+                        setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
                         }, 39000);
@@ -3300,7 +3380,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task5Rep', {transition: "flip"});
                         }, 40000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -3316,7 +3396,7 @@ and open the template in the editor.
         </div> 
 
 
-       
+
 
 
         <!--part 2 of task-->
@@ -3404,8 +3484,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task5Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task5Rep" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask5Rep();"/>
@@ -3589,8 +3668,8 @@ and open the template in the editor.
                         flipPic(sixthPicId, 42000);
                         // flip back pic6
                         flipPic(sixthPicId, 46000);
-                        
-                         setTimeout(function () {
+
+                        setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
                         }, 47000);
@@ -3599,7 +3678,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task6', {transition: "flip"});
                         }, 48000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -3615,7 +3694,7 @@ and open the template in the editor.
         </div> 
 
 
-        
+
 
 
         <!--part 2 of task-->
@@ -3708,8 +3787,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task6" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task6" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask6();"/>
@@ -3893,7 +3971,7 @@ and open the template in the editor.
                         flipPic(sixthPicId, 42000);
                         // flip back pic6
                         flipPic(sixthPicId, 46000);
-                        
+
                         setTimeout(function () {
                             // hide hint 
                             $('.tableHint').hide();
@@ -3902,7 +3980,7 @@ and open the template in the editor.
                         setTimeout(function () {
                             $.mobile.changePage('#choicePart2Task6Rep', {transition: "flip"});
                         }, 48000);
-                        
+
                         // change page
                         setTimeout(function () {
                             // append hint 
@@ -3918,7 +3996,7 @@ and open the template in the editor.
         </div> 
 
 
-       
+
 
 
         <!--part 2 of task-->
@@ -4011,8 +4089,7 @@ and open the template in the editor.
                 </table>
 
 
-                <h1 class="choiceHintPopupBottom" id="hintPopup2Task6Rep" style="visibility: hidden;"> Falls Sie sich korrigieren möchten: Tippen Sie das Bild erneut
-                    an und wählen Sie eine andere Position oder ein freies Feld am linken Rand </h1>
+                <h1 class="choiceHintPopupBottom" id="hintPopup2Task6Rep" style="visibility: hidden;">  </h1>
 
 
                 <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" onclick="switchToNextTask6Rep();"/>
@@ -4024,11 +4101,17 @@ and open the template in the editor.
 
 
         <!--end page of the task bildergeschichte-->
-        <div data-role="page" id="endPage" data-dom-cache=true class="introPage" >
+        <div data-role="page" id="endPage" data-dom-cache=true class="whitePage" >
 
             <div data-role="content">
+                
+                <image src="css\images\icons\congrats.png" class="milestoneIcon"/>
+                
+                <h1  class="endPageHint" >Sie haben diese Aufgabe geschafft!</h1> 
+                
+                <image src="css\images\btns-bg\bt-next-task.png" class="nextTaskButton" onclick="restartTask();"/>
 
-                <image src="css\images\icons\tipp.png" class="infoIcon"/>
+<!--                <image src="css\images\icons\tipp.png" class="infoIcon"/>
 
                 <center>
                     <h1 class="taskEndText">Diese Aufgabe haben Sie geschafft!</h1>
@@ -4036,7 +4119,7 @@ and open the template in the editor.
                 </center>
 
 
-                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" />
+                <image src="css\images\btns-bg\bt-weiter.png" class="defaultButton" />-->
 
             </div>
 
