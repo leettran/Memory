@@ -183,8 +183,8 @@
 
     .fieldBorder{
         border:1px solid black;
-        min-width: 145px;
-        min-height: 145px;
+/*        min-width: 145px;
+        min-height: 145px;*/
         width: 145px;
         height: 145px;
         overflow: hidden;
