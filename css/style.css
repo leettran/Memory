@@ -156,7 +156,7 @@
     .fieldsTableCentered{
         table-layout: fixed;
         border-collapse:separate; 
-        border-spacing: 1em;
+        border-spacing: 5em;
         margin-top: 50px;
         width: 450px;
         position: absolute;
