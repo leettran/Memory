@@ -142,9 +142,9 @@
     }
 
     .fieldsTableRight{
-
+        table-layout: fixed;
         border-collapse:separate; 
-        border-spacing: 1em;
+        border-spacing: 0;
         margin-top: 50px;
         width: 450px;
         position: absolute;
@@ -162,7 +162,7 @@
         position: absolute;
         top: 5%;
         right: 50%;
-        margin-right: -180px;
+        margin-right: -110px;
 
     }
 
